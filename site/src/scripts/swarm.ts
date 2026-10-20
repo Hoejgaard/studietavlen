@@ -42,14 +42,21 @@ function cssColor(name: string, fallback: string) {
   return new Color(v || fallback);
 }
 
+const nav = navigator as Navigator & { deviceMemory?: number };
+const weakDevice = () => (nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4 || innerWidth < 900;
+
 function particleCount() {
   const area = innerWidth * innerHeight;
   let n = Math.round(area / 170);
-  const nav = navigator as Navigator & { deviceMemory?: number };
-  const weak = (nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4 || innerWidth < 900;
-  if (weak) n = Math.round(n / 2.4);
+  if (weakDevice()) n = Math.round(n / 2.4);
   return Math.max(900, Math.min(7000, n));
 }
+
+// Niveauet (andel af fuldt antal), som denne maskine sidst kunne trække. Starter lavt første gang.
+const LEVEL_KEY = 'swarm-level';
+function savedLevel() { try { const v = Number(localStorage.getItem(LEVEL_KEY)); return v > 0 && v <= 1 ? v : 0; } catch { return 0; } }
+function saveLevel(v: number) { try { localStorage.setItem(LEVEL_KEY, v.toFixed(2)); } catch {} }
+const frac = (x: number) => x - Math.floor(x);
 
 class Swarm {
   private renderer: WebGLRenderer;
@@ -66,7 +73,8 @@ class Swarm {
   private nodes: { x: number; y: number; r: number; gold: boolean }[] = [];
   private ringR: number[] = []; private ringC = { x: 0, y: 0 }; private ringScale = 1;
   private mouse = { x: -9999, y: -9999 };
-  private raf = 0; private last = 0; private slowFrames = 0; private drawN: number;
+  private raf = 0; private last = 0; private drawN: number;
+  private frames = 0; private frameMs = 0; private lastTilt = '';
   private layoutTimer = 0; private alive = true;
   private accent = new Color('#19e3ff'); private gold = new Color('#ffc864');
 
@@ -74,7 +82,9 @@ class Swarm {
     this.renderer = new WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'high-performance' });
     this.renderer.setClearColor(0x000000, 0);
     this.camera = new OrthographicCamera(0, 1, 0, 1, -10, 10);
-    this.n = particleCount(); this.drawN = this.n;
+    this.n = particleCount();
+    // Start lavt (35 %, eller det niveau maskinen sidst kunne trække) og skru op, mens billedhastigheden måles.
+    this.drawN = Math.round(this.n * (savedLevel() || 0.35));
     const n = this.n;
     this.pos = new Float32Array(n * 3); this.vel = new Float32Array(n * 3); this.tgt = new Float32Array(n * 3);
     this.seed = new Float32Array(n); this.size = new Float32Array(n); this.col = new Float32Array(n * 3);
@@ -95,6 +105,7 @@ class Swarm {
       uniforms: { uTime: { value: 0 }, uPixelRatio: { value: 1 }, uAlpha: { value: 0.9 } },
     });
     this.scene.add(new Points(this.geo, this.mat));
+    this.geo.setDrawRange(0, this.drawN);
     this.resize(); this.theme(); this.layout();
     addEventListener('resize', this.onResize);
     addEventListener('mousemove', this.onMouse, { passive: true });
@@ -110,7 +121,7 @@ class Swarm {
   private onLeave = () => { this.mouse.x = -9999; this.mouse.y = -9999; };
 
   private resize() {
-    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(devicePixelRatio || 1, weakDevice() ? 1.1 : 1.5);
     this.renderer.setPixelRatio(dpr);
     this.renderer.setSize(innerWidth, innerHeight, false);
     this.camera.left = 0; this.camera.right = innerWidth; this.camera.top = 0; this.camera.bottom = innerHeight;
@@ -169,30 +180,27 @@ class Swarm {
         return { x: this.ringC.x + Math.cos(a) * R * 0.5, y: this.ringC.y + Math.sin(a) * R * 0.5, r: R * 0.03, gold: i % 4 === 0 };
       });
     }
-    // Fordeling: 50 % om noder (vægtet efter størrelse), 32 % på ringe, 18 % støv
-    const nNode = Math.round(this.n * 0.5), nRing = Math.round(this.n * 0.32);
+    // Fordeling: 50 % om noder (vægtet efter størrelse), 32 % på ringe, 18 % støv.
+    // Typerne blandes med en gylden-snit-sekvens, så ethvert forreste udsnit (drawN) er en repræsentativ blanding.
     const weights = this.nodes.map((nd) => nd.r * nd.r + 30);
     const wsum = weights.reduce((a, b) => a + b, 0);
-    let i = 0, acc = 0;
-    for (let k = 0; k < this.nodes.length; k++) {
-      acc += weights[k];
-      const until = Math.round((acc / wsum) * nNode);
-      for (; i < until && i < nNode; i++) {
+    const cum = weights.map((w, k) => weights.slice(0, k + 1).reduce((a, b) => a + b, 0) / wsum);
+    for (let i = 0; i < this.n; i++) {
+      const u = frac(i * 0.6180339887), v = frac(i * 0.7548776662 + 0.37);
+      if (u < 0.5) {
+        let k = cum.findIndex((c) => v <= c); if (k < 0) k = this.nodes.length - 1;
         this.kind[i] = 0; this.anchor[i] = k;
-        this.orbitR[i] = this.nodes[k].r * (1.3 + Math.random() * 1.6) + (this.mode === 'page' && k === 0 ? Math.random() * 10 : 0);
-        this.size[i] = 1.6 + Math.random() * 2.2;
+        this.orbitR[i] = this.nodes[k].r * (1.3 + this.seed[i] * 1.6) + (this.mode === 'page' && k === 0 ? this.seed[i] * 10 : 0);
+        this.size[i] = 1.6 + this.seed[i] * 2.2;
+      } else if (u < 0.82) {
+        this.kind[i] = 1; this.anchor[i] = i % this.ringR.length;
+        this.orbitR[i] = this.ringR[this.anchor[i]] + (this.seed[i] - 0.5) * 6;
+        this.size[i] = 1.2 + this.seed[i] * 1.4;
+      } else {
+        this.kind[i] = 2; this.anchor[i] = -1;
+        this.orbitR[i] = 0; this.size[i] = 1 + this.seed[i] * 1.6;
+        if (this.tgt[i * 3] === 0 && this.tgt[i * 3 + 1] === 0) { this.tgt[i * 3] = Math.random() * innerWidth; this.tgt[i * 3 + 1] = Math.random() * innerHeight; }
       }
-    }
-    for (; i < nNode; i++) { this.kind[i] = 0; this.anchor[i] = 0; this.orbitR[i] = this.nodes[0].r * 2; this.size[i] = 2; }
-    for (let j = 0; j < nRing; j++, i++) {
-      this.kind[i] = 1; this.anchor[i] = j % this.ringR.length;
-      this.orbitR[i] = this.ringR[this.anchor[i]] + (Math.random() - 0.5) * 6;
-      this.size[i] = 1.2 + Math.random() * 1.4;
-    }
-    for (; i < this.n; i++) {
-      this.kind[i] = 2; this.anchor[i] = -1;
-      this.orbitR[i] = 0; this.size[i] = 1 + Math.random() * 1.6;
-      this.tgt[i * 3] = Math.random() * innerWidth; this.tgt[i * 3 + 1] = Math.random() * innerHeight;
     }
     (this.geo.getAttribute('aSize') as BufferAttribute).needsUpdate = true;
     this.recolor();
@@ -206,13 +214,24 @@ class Swarm {
     this.raf = requestAnimationFrame(this.frame);
     const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
     if (document.hidden) return;
-    // fps-vagt: er maskinen for langsom, tegnes færre partikler
-    if (dt > 0.034) { if (++this.slowFrames > 45 && this.drawN > 900) { this.drawN = Math.round(this.drawN * 0.65); this.geo.setDrawRange(0, this.drawN); this.slowFrames = 0; } }
-    else if (this.slowFrames > 0) this.slowFrames--;
+    // Adaptivt antal: hver 30. frame måles gennemsnitstiden. Hurtig maskine -> flere partikler, langsom -> færre.
+    this.frameMs += dt * 1000;
+    if (++this.frames >= 30) {
+      const avg = this.frameMs / this.frames; this.frames = 0; this.frameMs = 0;
+      let next = this.drawN;
+      if (avg < 19 && this.drawN < this.n) next = Math.min(this.n, Math.round(this.drawN * 1.3));
+      else if (avg > 30 && this.drawN > 500) next = Math.max(500, Math.round(this.drawN * 0.7));
+      if (next !== this.drawN) { this.drawN = next; this.geo.setDrawRange(0, next); saveLevel(next / this.n); }
+    }
 
     const t = now / 1000;
     this.mat.uniforms.uTime.value = t;
-    if (this.mode === 'ring' && (now % 400) < 17) this.layout(); // følg 3D-tilt og scroll let forsinket
+    // Følg 3D-tilt: genlæs kun ringens geometri, når vippet faktisk har ændret sig (sparer DOM-læsninger)
+    if (this.mode === 'ring' && (now % 300) < 17) {
+      const w = document.querySelector<HTMLElement>('.ringe-wrap');
+      const tilt = w ? w.style.getPropertyValue('--rx') + w.style.getPropertyValue('--ry') + scrollY : '';
+      if (tilt !== this.lastTilt) { this.lastTilt = tilt; this.layout(); }
+    }
 
     const { x: mx, y: my } = this.mouse;
     const pos = this.pos, vel = this.vel, tgt = this.tgt;

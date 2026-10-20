@@ -58,6 +58,11 @@ Valgt: Ringe som forside, Tavle som alternativ visning (og mobil-fallback). Impl
 - `site/src/scripts/fx.ts` indlæser three.js dovent (ca. 120 kB gzip) og kun når FX er til, WebGL findes og
   "reducer bevægelse" ikke er slået til. Uden WebGL vises 2D-HUD'en (hud.ts) som før.
 - Et udtrykkeligt FX-til med knappen vinder over systemets "reducer bevægelse" (brugerens valg vejer tungest).
+- Opstart (rettet efter test på laptop): sværmen starter først, når siden er faldet til ro (idle + ca. 1 s), fader
+  ind over 1,6 s og begynder på 35 % af partiklerne. Hver 30. frame måles gennemsnitstiden: under 19 ms skrues
+  op med 30 %, over 30 ms ned med 30 %. Niveauet gemmes i localStorage (`swarm-level`), så maskinen næste gang
+  starter dér, hvor den kunne følge med. Partikeltyperne er blandet med en gylden-snit-sekvens, så et udsnit altid
+  ligner helheden. Ringens geometri genlæses kun, når 3D-vippet faktisk ændrer sig.
 
 ## Åbne spørgsmål til layoutfasen (besvaret, bevaret som historik)
 
