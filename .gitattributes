@@ -1,0 +1,5 @@
+# Alle tekstfiler gemmes med LF, uanset om man er på Windows eller Mac.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
