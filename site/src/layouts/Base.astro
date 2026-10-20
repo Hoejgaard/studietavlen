@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { alleEmner, tilKlient, FAG } from '../lib/data';
 import { url } from '../lib/url';
 
@@ -14,6 +15,7 @@ interface Props {
 const { title, description = FAG.beskrivelse, aktiv = '', fuld = false } = Astro.props;
 const emner = tilKlient(await alleEmner());
 const fuldTitel = title === 'Studietavlen' ? title : `${title} · Studietavlen`;
+const eks = FAG.eksamen;
 ---
 <!doctype html>
 <html lang="da">
@@ -24,6 +26,7 @@ const fuldTitel = title === 'Studietavlen' ? title : `${title} · Studietavlen`;
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
     <meta name="color-scheme" content="dark light" />
+    <ClientRouter />
     <script is:inline>
       // Tema og effekter sættes før første paint for at undgå blink.
       try {
@@ -33,7 +36,7 @@ const fuldTitel = title === 'Studietavlen' ? title : `${title} · Studietavlen`;
     </script>
   </head>
   <body>
-    <canvas id="hud" aria-hidden="true"></canvas>
+    <canvas id="hud" aria-hidden="true" transition:persist="hud"></canvas>
     <div class="app">
       <header class="top">
         <a class="logo" href={url('/')}><b>Studietavlen</b><span>{FAG.kort.toUpperCase()} · {FAG.navn}</span></a>
@@ -44,11 +47,12 @@ const fuldTitel = title === 'Studietavlen' ? title : `${title} · Studietavlen`;
           <a href={url('/begreber/')} aria-current={aktiv === 'begreber' ? 'page' : undefined}>Begreber</a>
         </nav>
         <div class="spacer"></div>
+        <a class="count" id="count" href={url('/emner/problemformulering-synopsis/')} data-case={eks.case_udleveres} data-aflev={eks.aflevering} title="Eksamen: case udleveres 6. november kl. 9, afleveres 9. november kl. 9, mundtlig uge 49"></a>
         <label class="cmd"><kbd>Ctrl K</kbd><input id="q" type="search" autocomplete="off" placeholder="Spring til emne, teoretiker, begreb…" aria-label="Spring til emne" /></label>
         <button class="iconbtn" id="tema" title="Skift lys/mørk">Tema</button>
-        <button class="iconbtn" id="fx" title="Slå baggrundseffekt til/fra">FX</button>
+        <button class="iconbtn" id="fx" title="Slå bevægelse og baggrundseffekt til/fra">FX</button>
       </header>
-      <main class:list={{ wrap: !fuld }}>
+      <main class:list={{ wrap: !fuld }} transition:animate="fade">
         <slot />
       </main>
     </div>
@@ -60,6 +64,7 @@ const fuldTitel = title === 'Studietavlen' ? title : `${title} · Studietavlen`;
       import '../scripts/palette.ts';
       import '../scripts/hover.ts';
       import '../scripts/prefs.ts';
+      import '../scripts/countdown.ts';
     </script>
   </body>
 </html>

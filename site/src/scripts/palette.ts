@@ -1,17 +1,19 @@
-// Spring-feltet: Ctrl K, søgning på titel, blik, teoretikere, resumé og nøgleord. Piletaster + Enter.
+// Spring-feltet: Ctrl K eller /, søgning på titel, blik, teoretikere, resumé og nøgleord. Piletaster + Enter.
+// Bindes igen ved hver sidevisning (View Transitions); de globale tastaturgenveje bindes kun én gang.
 import { url } from '../lib/url';
 
 type Item = { slug: string; title: string; blik: string; kort: string; teoretikere: string[]; interesse: string; noegleord: string[] };
+const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+const hay = (e: Item) => [e.title, e.blik, e.kort, e.teoretikere.join(' '), e.interesse, e.noegleord.join(' ')].join(' ').toLowerCase();
 
-const q = document.getElementById('q') as HTMLInputElement | null;
-const pal = document.getElementById('palette');
-const raw = document.getElementById('emner-data')?.textContent;
-
-if (q && pal && raw) {
+function init() {
+  const q = document.getElementById('q') as HTMLInputElement | null;
+  const pal = document.getElementById('palette');
+  const raw = document.getElementById('emner-data')?.textContent;
+  if (!q || !pal || !raw || q.dataset.bound) return;
+  q.dataset.bound = '1';
   const items: Item[] = JSON.parse(raw);
   let sel = 0;
-  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
-  const hay = (e: Item) => [e.title, e.blik, e.kort, e.teoretikere.join(' '), e.interesse, e.noegleord.join(' ')].join(' ').toLowerCase();
 
   function render(s: string) {
     const t = s.toLowerCase().trim();
@@ -27,10 +29,9 @@ if (q && pal && raw) {
     sel = 0;
   }
   const rows = () => [...pal!.querySelectorAll<HTMLAnchorElement>('a.row')];
-  const open = () => { render(q!.value); pal!.classList.add('open'); };
   const close = () => pal!.classList.remove('open');
 
-  q.addEventListener('focus', open);
+  q.addEventListener('focus', () => { render(q.value); pal.classList.add('open'); });
   q.addEventListener('input', () => { render(q.value); pal.classList.add('open'); });
   q.addEventListener('keydown', (ev) => {
     const r = rows();
@@ -43,9 +44,21 @@ if (q && pal && raw) {
     r[sel]?.scrollIntoView({ block: 'nearest' });
     ev.preventDefault();
   });
+  pal.addEventListener('click', close);
+}
+
+const w = window as unknown as { __palGlobal?: boolean };
+if (!w.__palGlobal) {
+  w.__palGlobal = true;
   document.addEventListener('keydown', (ev) => {
+    const q = document.getElementById('q') as HTMLInputElement | null;
+    if (!q) return;
     if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'k') { ev.preventDefault(); q.focus(); q.select(); }
     if (ev.key === '/' && document.activeElement === document.body) { ev.preventDefault(); q.focus(); }
   });
-  document.addEventListener('click', (ev) => { if (!pal.contains(ev.target as Node) && ev.target !== q) close(); });
+  document.addEventListener('click', (ev) => {
+    const pal = document.getElementById('palette'), q = document.getElementById('q');
+    if (pal && !pal.contains(ev.target as Node) && ev.target !== q) pal.classList.remove('open');
+  });
 }
+document.addEventListener('astro:page-load', init);

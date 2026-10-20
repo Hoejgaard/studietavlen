@@ -15,12 +15,13 @@ const sum = vaegt.reduce((a, b) => a + b, 0);
 let akk = -Math.PI / 2;
 const starter = vaegt.map((w) => { const a0 = akk; akk += (Math.PI * 2 * w) / sum; return { a0, step: (Math.PI * 2 * w) / sum }; });
 
-type Node = { e: Emne; x: number; y: number; r: number; tx: number; ty: number; anchor: string };
+type Node = { e: Emne; x: number; y: number; r: number; tx: number; ty: number; anchor: string; deg: number; idx: number };
+let idx = 0;
 const sektorer = grupper.map((g, i) => {
   const { a0, step } = starter[i];
   const am = a0 + step / 2;
   const nodes: Node[] = g.emner.map((e, j) => {
-    // Vigtigste inderst; vinklen veksler mellem tre spor, så labels ikke rammer hinanden.
+    // Vigtigste inderst; vinklen veksler mellem spor, så labels ikke rammer hinanden.
     const spor = g.emner.length === 1 ? [0.5] : g.emner.length === 2 ? [0.36, 0.64] : [0.28, 0.72, 0.5];
     const a = a0 + step * spor[j % spor.length];
     const rad = Rmin + ((j + 0.5) * (Rmax - 10 - Rmin)) / g.emner.length;
@@ -30,7 +31,8 @@ const sektorer = grupper.map((g, i) => {
     const c = Math.cos(a), s = Math.sin(a);
     const anchor = c > 0.35 ? 'start' : c < -0.35 ? 'end' : 'middle';
     const tx = x + c * (r + 6), ty = y + s * (r + 6) + (anchor === 'middle' ? (s < 0 ? -4 : 12) : 4);
-    return { e, x, y, r, tx, ty, anchor };
+    const deg = ((a * 180) / Math.PI + 360) % 360;
+    return { e, x, y, r, tx, ty, anchor, deg, idx: idx++ };
   });
   return {
     label: g.label,
@@ -39,27 +41,50 @@ const sektorer = grupper.map((g, i) => {
     nodes,
   };
 });
+
+// Radar-sweep: en vifte af tynde kiler med aftagende styrke bag "nålen".
+const R = Rmax + 14;
+const kiler = Array.from({ length: 10 }, (_, k) => {
+  const a1 = (-(k + 1) * 3.2 * Math.PI) / 180, a2 = (-k * 3.2 * Math.PI) / 180;
+  const p = (a: number) => `${(cx + Math.cos(a) * R).toFixed(1)} ${(cy + Math.sin(a) * R).toFixed(1)}`;
+  return { d: `M${cx} ${cy} L${p(a1)} A${R} ${R} 0 0 1 ${p(a2)} Z`, o: (0.16 * (10 - k)) / 10 };
+});
 ---
-<div class="ringe-wrap">
+<div class="ringe-wrap" data-cx={cx} data-cy={cy}>
   <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Tavle over fagets emner, ordnet i sektorer efter blik">
-    {ringe.map((r, i) => <circle class:list={['ring', { major: i === 0 || i === ringe.length - 1 }]} cx={cx} cy={cy} r={r} />)}
+    <g class="ringe-deco">
+      {ringe.map((r, i) => <circle class:list={['ring', { major: i === 0 || i === ringe.length - 1 }]} cx={cx} cy={cy} r={r} />)}
+      <circle class="ring tick" cx={cx} cy={cy} r={Rmax + 22} />
+    </g>
+    <g class="sweep" aria-hidden="true">
+      {kiler.map((k) => <path d={k.d} style={`opacity:${k.o}`} />)}
+      <line x1={cx} y1={cy} x2={cx + R} y2={cy} />
+    </g>
     {sektorer.map((s) => (
       <g>
         <line class="sector-line" x1={s.line.x1} y1={s.line.y1} x2={s.line.x2} y2={s.line.y2} />
         <text class="sector-label" x={s.text.x} y={s.text.y} text-anchor={s.text.anchor} dominant-baseline="middle">{s.label}</text>
-        {s.nodes.map((nd) => (
-          <a href={url(`/emner/${nd.e.id}/`)} class:list={['node', `r${nd.e.data.relevans}`]} data-slug={nd.e.id} aria-label={nd.e.data.title}>
-            <circle cx={nd.x} cy={nd.y} r={nd.r} />
-            <text x={nd.tx} y={nd.ty} text-anchor={nd.anchor}>{kortTitel(nd.e.data.title)}</text>
-          </a>
-        ))}
       </g>
     ))}
+    <g class="rel-lines" aria-hidden="true"></g>
+    <g class="nodes">
+      {sektorer.map((s) => s.nodes.map((nd) => (
+        <a href={url(`/emner/${nd.e.id}/`)} class:list={['node', `r${nd.e.data.relevans}`]} data-slug={nd.e.id} data-x={nd.x.toFixed(1)} data-y={nd.y.toFixed(1)} data-deg={nd.deg.toFixed(1)} style={`--d:${(nd.idx * 0.37) % 6}s`} aria-label={nd.e.data.title}>
+          <circle class="hit" cx={nd.x} cy={nd.y} r={nd.r + 12} />
+          <circle class="dot" cx={nd.x} cy={nd.y} r={nd.r} />
+          <text x={nd.tx} y={nd.ty} text-anchor={nd.anchor}>{kortTitel(nd.e.data.title)}</text>
+        </a>
+      )))}
+    </g>
     <a href={url('/optik/')} class="core" aria-label="Fagets analytiske optik">
+      <circle class="core-halo" cx={cx} cy={cy} r={70} />
       <circle cx={cx} cy={cy} r={58} />
       <text x={cx} y={cy - 6}>Optik</text>
       <text x={cx} y={cy + 12}>oversigt</text>
     </a>
-    <text class="hint-svg" x="12" y="790">Hover = kort intro · klik = hele emnet · Ctrl K = spring · guld = relevans 5 · inderst = vigtigst</text>
+    <text class="hint-svg" x="12" y="790">Hover = kort intro og koblinger · klik = hele emnet · Ctrl K = spring · guld = relevans 5 · inderst = vigtigst</text>
   </svg>
 </div>
+<script>
+  import '../scripts/ringe.ts';
+</script>

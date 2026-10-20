@@ -71,6 +71,7 @@ export function tilKlient(emner: Emne[]) {
     faenomener: e.data.faenomener,
     relevans: e.data.relevans,
     noegleord: e.data.nøgleord,
+    relaterede: e.data.relaterede,
   }));
 }
 

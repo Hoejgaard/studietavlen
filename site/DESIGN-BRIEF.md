@@ -30,7 +30,25 @@ læsbart og hurtigt at bruge sent om aftenen før eksamen.
   uden WebGL.
 - Node.js skal installeres på Alexanders maskine, før sitet kan bygges.
 
-## Åbne spørgsmål til layoutfasen
+## Status 20. oktober 2026: trin 1 "levende site" er bygget
+
+Valgt: Ringe som forside, Tavle som alternativ visning (og mobil-fallback). Implementeret i `site/`:
+
+- **Ringen lever.** Dekorative ringe roterer langsomt (240 s/omgang), noderne "ånder" faseforskudt,
+  relevans 5 pulserer i guld, og en radar-sweep i selve ringen tænder noderne, når den passerer
+  (`site/src/scripts/ringe.ts` + `.sweep`/`.lit` i `global.css`).
+- **Ringen reagerer.** Hover/fokus på en node tegner stiplede, lysende linjer til dens `relaterede` og dæmper
+  resten. Musen vipper skiven svagt i 3D (CSS perspective + `--rx/--ry`).
+- **Entré.** Noderne flyver ind fra tilfældige positioner første gang i en fane (sessionStorage `ringe-set`).
+- **View Transitions.** `<ClientRouter />` i `Base.astro`; HUD-canvas persisteres, main fader. Alle klientscripts
+  binder på `astro:page-load` og rydder op på `astro:before-swap`; tema/FX genanvendes på `astro:after-swap`.
+- **Nedtælling** i headeren til caseudlevering (6/11 kl. 9), derefter aflevering (9/11 kl. 9), derefter "mundtlig uge 49".
+- Fravalgt efter Alexanders ønske: markering af læste emner (sitet er et værktøj, man hopper ind og ud af).
+- FX-knappen slår al bevægelse fra (sweep, rotation, ånding, tilt, baggrund). `prefers-reduced-motion` gør det samme.
+
+Trin 2 (three.js-partikelsværm bag FX-knappen) er ikke lavet. Vurdér først, om trin 1 rammer følelsen.
+
+## Åbne spørgsmål til layoutfasen (besvaret, bevaret som historik)
 
 - Skal partikelringene være selve tavlen (emner placeret på ringene efter blik), eller en baggrund bag en mere
   klassisk kort-tavle? Første giver mest JARVIS, andet giver mest overblik. Foreslå begge som skitse.
