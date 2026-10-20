@@ -109,10 +109,11 @@ Struktur:
 - Layout `Base.astro` har header, Ctrl K-palette, hover-HUD, tema- og FX-knap. Klientscripts i `site/src/scripts/`.
 - Emnedata til palette og hover inlines som JSON i hver side (`#emner-data`), ingen fetch.
 
-Kør (Node 24 ligger i `C:\Program Files\nodejs`, som ikke er på PATH i Claude Codes shell):
+Kør (Node 24, Git og GitHub CLI er installeret, men ingen af dem er på PATH i Claude Codes shell; gh kræver
+at git også er på PATH):
 
 ```powershell
-$env:Path = "C:\Program Files\nodejs;" + $env:Path
+$env:Path = "C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI;" + $env:Path
 Set-Location site
 npm run dev      # http://127.0.0.1:4321/studietavlen/  (base-stien gælder også lokalt)
 npm run build    # dist/
@@ -126,8 +127,8 @@ Regler:
   Sitet samler selv op. Nyt blik skal tilføjes i BLIK_ORDER tre steder (set-blik.py, build-fag-json.py, data.ts).
 - Partikel-HUD'en er 2D canvas, slås fra med FX-knappen og respekterer prefers-reduced-motion. Ingen three.js.
 - Dark mode er standard, lys tilstand via TEMA-knappen. Begge skal se ordentlige ud ved enhver ændring.
-- Deploy til GitHub Pages: `.github/workflows/deploy.yml` bygger `site/` med `withastro/action` og deployer ved push
-  til `main`. `site` og `base` står i `astro.config.mjs`. Alle interne links SKAL gå gennem `url()` fra
+- Live på https://hoejgaard.github.io/studietavlen/ fra repoet github.com/Hoejgaard/studietavlen.
+  `.github/workflows/deploy.yml` bygger `site/` med `withastro/action` og deployer ved push til `main`. `site` og `base` står i `astro.config.mjs`. Alle interne links SKAL gå gennem `url()` fra
   `site/src/lib/url.ts` (præfikser `import.meta.env.BASE_URL`); `remark-wikilinks.mjs` får `base` som option fra
   configen, fordi den kører i Node. Skriv aldrig `href="/emner/..."` direkte. Skifter repoet navn, ret kun `base`.
 - `raw/` er gitignoreret (ophavsret + 184 MB) og deles via OneDrive, ikke via GitHub.
