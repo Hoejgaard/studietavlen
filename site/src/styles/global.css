@@ -44,8 +44,12 @@ body { margin: 0; min-height: 100vh; background: var(--bg); }
 a { color: var(--accent); }
 ::selection { background: var(--accent); color: var(--bg); }
 
-canvas#hud { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-:root[data-fx="off"] canvas#hud { display: none; }
+canvas#hud, canvas#swarm { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+:root[data-fx="off"] canvas#hud, :root[data-fx="off"] canvas#swarm { display: none; }
+:root[data-swarm="on"] canvas#hud { display: none; }
+:root:not([data-swarm="on"]) canvas#swarm { display: none; }
+/* Sværmen ligger bag ringen; selve ringens noder tegnes af SVG'en ovenpå, så det er sværmen, der skal vige. */
+.ringe-wrap svg .node .dot { fill: var(--bg); }
 
 .app { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
 
@@ -210,9 +214,10 @@ table.optik a { text-decoration: none; }
 .begreb.hide { display: none; }
 @media (max-width: 640px) { .begreb { grid-template-columns: 1fr; gap: 3px; } }
 
+/* Systemets "reducer bevægelse" slår alt fra, medmindre brugeren udtrykkeligt har slået FX til med knappen. */
 @media (prefers-reduced-motion: reduce) {
-  canvas#hud, .sweep { display: none; }
-  .ringe-deco, .node .dot, .core-halo, .count.hot, .rel-lines line { animation: none !important; }
-  .ringe-wrap svg { transform: none !important; }
-  * { transition: none !important; }
+  :root:not([data-fx="on"]) canvas#hud, :root:not([data-fx="on"]) canvas#swarm, :root:not([data-fx="on"]) .sweep { display: none; }
+  :root:not([data-fx="on"]) :is(.ringe-deco, .node .dot, .core-halo, .count.hot, .rel-lines line) { animation: none !important; }
+  :root:not([data-fx="on"]) .ringe-wrap svg { transform: none !important; }
+  :root:not([data-fx="on"]) * { transition: none !important; }
 }

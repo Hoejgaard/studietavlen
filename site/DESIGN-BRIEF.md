@@ -46,7 +46,18 @@ Valgt: Ringe som forside, Tavle som alternativ visning (og mobil-fallback). Impl
 - Fravalgt efter Alexanders ønske: markering af læste emner (sitet er et værktøj, man hopper ind og ud af).
 - FX-knappen slår al bevægelse fra (sweep, rotation, ånding, tilt, baggrund). `prefers-reduced-motion` gør det samme.
 
-Trin 2 (three.js-partikelsværm bag FX-knappen) er ikke lavet. Vurdér først, om trin 1 rammer følelsen.
+## Status 20. oktober 2026: trin 2 "partikelsværm" er bygget
+
+- `site/src/scripts/swarm.ts` (three.js `Points` med egen shader, additiv blanding i mørk tilstand, normal i lys).
+  900-7000 partikler efter skærmstørrelse og maskine; 50 % kredser om ringens noder (læst fra SVG'ens
+  `getScreenCTM`, så de følger 3D-tilt), 32 % ligger på ringene, 18 % er støv. Guld om relevans 5-noder.
+- På sider uden ring danner partiklerne en HUD (kerne + 12 ankre + ringe) bag indholdet. Ved sideskift
+  glider partiklerne til de nye mål, så Ringe → emne → Tavle "morpher".
+- Musen frastøder partikler inden for 120 px. fps-vagt tegner færre partikler, hvis maskinen er langsom.
+  Pause når fanen er skjult. Canvas persisteres på tværs af View Transitions.
+- `site/src/scripts/fx.ts` indlæser three.js dovent (ca. 120 kB gzip) og kun når FX er til, WebGL findes og
+  "reducer bevægelse" ikke er slået til. Uden WebGL vises 2D-HUD'en (hud.ts) som før.
+- Et udtrykkeligt FX-til med knappen vinder over systemets "reducer bevægelse" (brugerens valg vejer tungest).
 
 ## Åbne spørgsmål til layoutfasen (besvaret, bevaret som historik)
 

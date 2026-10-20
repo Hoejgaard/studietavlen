@@ -125,7 +125,10 @@ npm run preview  # serverer dist/ på samme adresse
 Regler:
 - Nye emner kræver kun en ny .md i `content/otp/emner/` + kørsel af `tools/set-blik.py` og `tools/build-fag-json.py`.
   Sitet samler selv op. Nyt blik skal tilføjes i BLIK_ORDER tre steder (set-blik.py, build-fag-json.py, data.ts).
-- Partikel-HUD'en er 2D canvas, slås fra med FX-knappen og respekterer prefers-reduced-motion. Ingen three.js.
+- Bevægelse: `scripts/ringe.ts` (sweep, koblingslinjer, entré, tilt), `scripts/swarm.ts` (three.js-partikelsværm,
+  indlæses dovent af `scripts/fx.ts`) og `scripts/hud.ts` (2D-fallback uden WebGL). FX-knappen slår alt fra;
+  `prefers-reduced-motion` slår alt fra, medmindre brugeren udtrykkeligt har slået FX til. Alle klientscripts
+  binder på `astro:page-load` og rydder op på `astro:before-swap` (View Transitions). Se `site/DESIGN-BRIEF.md`.
 - Dark mode er standard, lys tilstand via TEMA-knappen. Begge skal se ordentlige ud ved enhver ændring.
 - Live på https://hoejgaard.github.io/studietavlen/ fra repoet github.com/Hoejgaard/studietavlen.
   `.github/workflows/deploy.yml` bygger `site/` med `withastro/action` og deployer ved push til `main`. `site` og `base` står i `astro.config.mjs`. Alle interne links SKAL gå gennem `url()` fra

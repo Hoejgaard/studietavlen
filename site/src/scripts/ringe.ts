@@ -5,7 +5,8 @@ type Item = { slug: string; relaterede: string[] };
 let raf = 0;
 let cleanup: (() => void)[] = [];
 
-const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Et udtrykkeligt FX-til (sat med knappen) vinder over systemets "reducer bevægelse".
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches && document.documentElement.dataset.fx !== 'on';
 const fxOff = () => document.documentElement.dataset.fx === 'off';
 
 function init() {

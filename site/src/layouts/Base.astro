@@ -37,6 +37,7 @@ const eks = FAG.eksamen;
   </head>
   <body>
     <canvas id="hud" aria-hidden="true" transition:persist="hud"></canvas>
+    <canvas id="swarm" aria-hidden="true" transition:persist="swarm"></canvas>
     <div class="app">
       <header class="top">
         <a class="logo" href={url('/')}><b>Studietavlen</b><span>{FAG.kort.toUpperCase()} · {FAG.navn}</span></a>
@@ -65,6 +66,7 @@ const eks = FAG.eksamen;
       import '../scripts/hover.ts';
       import '../scripts/prefs.ts';
       import '../scripts/countdown.ts';
+      import '../scripts/fx.ts';
     </script>
   </body>
 </html>

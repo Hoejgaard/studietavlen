@@ -46,11 +46,12 @@ if (c) {
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const sync = () => {
-    const want = document.documentElement.dataset.fx !== 'off' && !reduced.matches && !document.hidden;
+    const ds = document.documentElement.dataset;
+    const want = ds.fx !== 'off' && ds.swarm !== 'on' && (!reduced.matches || ds.fx === 'on') && !document.hidden;
     if (want && !running) { running = true; requestAnimationFrame(frame); }
     if (!want) running = false;
   };
-  new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['data-fx'] });
+  new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['data-fx', 'data-swarm'] });
   document.addEventListener('visibilitychange', sync);
   reduced.addEventListener('change', sync);
   sync();
