@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.cache/
+
+# Råmateriale (noter, slides, scannede pensumtekster) holdes ude af GitHub: ophavsret og 180+ MB.
+# Det deles via OneDrive. Sitet bygges alene fra content/.
+raw/

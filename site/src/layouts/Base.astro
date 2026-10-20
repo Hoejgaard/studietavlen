@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import { alleEmner, tilKlient, FAG } from '../lib/data';
+import { url } from '../lib/url';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Hvilket menupunkt der er aktivt */
+  aktiv?: 'ringe' | 'tavle' | 'optik' | 'begreber' | '';
+  /** Skjul standard-wrap (Ringe-siden styrer selv sin plads) */
+  fuld?: boolean;
+}
+const { title, description = FAG.beskrivelse, aktiv = '', fuld = false } = Astro.props;
+const emner = tilKlient(await alleEmner());
+const fuldTitel = title === 'Studietavlen' ? title : `${title} · Studietavlen`;
+---
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fuldTitel}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <meta name="color-scheme" content="dark light" />
+    <script is:inline>
+      // Tema og effekter sættes før første paint for at undgå blink.
+      try {
+        const t = localStorage.getItem('tema'); if (t) document.documentElement.dataset.theme = t;
+        const fx = localStorage.getItem('fx'); if (fx) document.documentElement.dataset.fx = fx;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <canvas id="hud" aria-hidden="true"></canvas>
+    <div class="app">
+      <header class="top">
+        <a class="logo" href={url('/')}><b>Studietavlen</b><span>{FAG.kort.toUpperCase()} · {FAG.navn}</span></a>
+        <nav aria-label="Visninger">
+          <a href={url('/')} aria-current={aktiv === 'ringe' ? 'page' : undefined}>Ringe</a>
+          <a href={url('/tavle/')} aria-current={aktiv === 'tavle' ? 'page' : undefined}>Tavle</a>
+          <a href={url('/optik/')} aria-current={aktiv === 'optik' ? 'page' : undefined}>Optik</a>
+          <a href={url('/begreber/')} aria-current={aktiv === 'begreber' ? 'page' : undefined}>Begreber</a>
+        </nav>
+        <div class="spacer"></div>
+        <label class="cmd"><kbd>Ctrl K</kbd><input id="q" type="search" autocomplete="off" placeholder="Spring til emne, teoretiker, begreb…" aria-label="Spring til emne" /></label>
+        <button class="iconbtn" id="tema" title="Skift lys/mørk">Tema</button>
+        <button class="iconbtn" id="fx" title="Slå baggrundseffekt til/fra">FX</button>
+      </header>
+      <main class:list={{ wrap: !fuld }}>
+        <slot />
+      </main>
+    </div>
+    <div id="palette" role="listbox" aria-label="Søgeresultater"></div>
+    <div id="hover" role="tooltip"></div>
+    <script type="application/json" id="emner-data" set:html={JSON.stringify(emner)}></script>
+    <script>
+      import '../scripts/hud.ts';
+      import '../scripts/palette.ts';
+      import '../scripts/hover.ts';
+      import '../scripts/prefs.ts';
+    </script>
+  </body>
+</html>

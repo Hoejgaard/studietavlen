@@ -1,0 +1,65 @@
+---
+import { grupperEfterBlik, kortTitel, type Emne } from '../lib/data';
+import { url } from '../lib/url';
+
+interface Props { emner: Emne[] }
+const { emner } = Astro.props;
+const grupper = grupperEfterBlik(emner);
+
+const cx = 600, cy = 395, Rmax = 330, Rmin = 120;
+const ringe = [0, 1, 2, 3].map((r) => Rmin + (r * (Rmax - Rmin)) / 3);
+
+// Sektorer vægtes efter antal emner, så tætte blikke får mere plads og labels ikke kolliderer.
+const vaegt = grupper.map((g) => g.emner.length + 1.5);
+const sum = vaegt.reduce((a, b) => a + b, 0);
+let akk = -Math.PI / 2;
+const starter = vaegt.map((w) => { const a0 = akk; akk += (Math.PI * 2 * w) / sum; return { a0, step: (Math.PI * 2 * w) / sum }; });
+
+type Node = { e: Emne; x: number; y: number; r: number; tx: number; ty: number; anchor: string };
+const sektorer = grupper.map((g, i) => {
+  const { a0, step } = starter[i];
+  const am = a0 + step / 2;
+  const nodes: Node[] = g.emner.map((e, j) => {
+    // Vigtigste inderst; vinklen veksler mellem tre spor, så labels ikke rammer hinanden.
+    const spor = g.emner.length === 1 ? [0.5] : g.emner.length === 2 ? [0.36, 0.64] : [0.28, 0.72, 0.5];
+    const a = a0 + step * spor[j % spor.length];
+    const rad = Rmin + ((j + 0.5) * (Rmax - 10 - Rmin)) / g.emner.length;
+    const r = 6 + e.data.relevans * 1.6;
+    const x = cx + Math.cos(a) * rad, y = cy + Math.sin(a) * rad;
+    // Label lægges radialt udad fra noden, så den bliver i sin egen sektor.
+    const c = Math.cos(a), s = Math.sin(a);
+    const anchor = c > 0.35 ? 'start' : c < -0.35 ? 'end' : 'middle';
+    const tx = x + c * (r + 6), ty = y + s * (r + 6) + (anchor === 'middle' ? (s < 0 ? -4 : 12) : 4);
+    return { e, x, y, r, tx, ty, anchor };
+  });
+  return {
+    label: g.label,
+    line: { x1: cx + Math.cos(a0) * Rmin * 0.85, y1: cy + Math.sin(a0) * Rmin * 0.85, x2: cx + Math.cos(a0) * (Rmax + 12), y2: cy + Math.sin(a0) * (Rmax + 12) },
+    text: { x: cx + Math.cos(am) * (Rmax + 62), y: cy + Math.sin(am) * (Rmax + 62), anchor: Math.cos(am) > 0.2 ? 'start' : Math.cos(am) < -0.2 ? 'end' : 'middle' },
+    nodes,
+  };
+});
+---
+<div class="ringe-wrap">
+  <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Tavle over fagets emner, ordnet i sektorer efter blik">
+    {ringe.map((r, i) => <circle class:list={['ring', { major: i === 0 || i === ringe.length - 1 }]} cx={cx} cy={cy} r={r} />)}
+    {sektorer.map((s) => (
+      <g>
+        <line class="sector-line" x1={s.line.x1} y1={s.line.y1} x2={s.line.x2} y2={s.line.y2} />
+        <text class="sector-label" x={s.text.x} y={s.text.y} text-anchor={s.text.anchor} dominant-baseline="middle">{s.label}</text>
+        {s.nodes.map((nd) => (
+          <a href={url(`/emner/${nd.e.id}/`)} class:list={['node', `r${nd.e.data.relevans}`]} data-slug={nd.e.id} aria-label={nd.e.data.title}>
+            <circle cx={nd.x} cy={nd.y} r={nd.r} />
+            <text x={nd.tx} y={nd.ty} text-anchor={nd.anchor}>{kortTitel(nd.e.data.title)}</text>
+          </a>
+        ))}
+      </g>
+    ))}
+    <a href={url('/optik/')} class="core" aria-label="Fagets analytiske optik">
+      <circle cx={cx} cy={cy} r={58} />
+      <text x={cx} y={cy - 6}>Optik</text>
+      <text x={cx} y={cy + 12}>oversigt</text>
+    </a>
+    <text class="hint-svg" x="12" y="790">Hover = kort intro · klik = hele emnet · Ctrl K = spring · guld = relevans 5 · inderst = vigtigst</text>
+  </svg>
+</div>

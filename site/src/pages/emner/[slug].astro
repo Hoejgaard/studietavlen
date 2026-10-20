@@ -1,0 +1,52 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { alleEmner, dots, FAG, blikLabel, type Emne } from '../../lib/data';
+import { url } from '../../lib/url';
+
+export async function getStaticPaths() {
+  const emner = await alleEmner();
+  return emner.map((e, i) => ({
+    params: { slug: e.id },
+    props: { e, prev: emner[i - 1] ?? null, next: emner[i + 1] ?? null, alle: emner },
+  }));
+}
+interface Props { e: Emne; prev: Emne | null; next: Emne | null; alle: Emne[] }
+const { e, prev, next, alle } = Astro.props;
+const { Content } = await render(e);
+const bySlug = new Map(alle.map((x) => [x.id, x]));
+const relaterede = e.data.relaterede.map((s) => bySlug.get(s)).filter(Boolean) as Emne[];
+const forel = e.data.forelaesning.map((nr) => FAG.forelaesninger.find((f) => f.nr === nr)).filter(Boolean);
+const sammeBlik = alle.filter((x) => x.data.blik === e.data.blik && x.id !== e.id);
+---
+<Base title={e.data.title} description={e.data.kort}>
+  <div class="emne">
+    <div>
+      <div class="eyebrow">{blikLabel(e.data.blik)} · forelæsning {e.data.forelaesning.join(', ')} · <span class="dots" aria-label={`relevans ${e.data.relevans} af 5`}>{dots(e.data.relevans)}</span></div>
+      <h1>{e.data.title}</h1>
+      <div class="meta">
+        <b>Kort</b><span>{e.data.kort}</span>
+        <b>Teoretikere</b><span>{e.data.teoretikere.join(', ')}</span>
+        <b>Interesse</b><span>{e.data.interesse}</span>
+        <b>Fænomener</b><span>{e.data.faenomener}</span>
+        {e.data.blik_detalje && <><b>Blik</b><span>{e.data.blik_detalje}</span></>}
+      </div>
+      <article class="prose"><Content /></article>
+      <nav class="prevnext" aria-label="Forrige og næste emne">
+        <span>{prev && <a href={url(`/emner/${prev.id}/`)}>← {prev.data.title}</a>}</span>
+        <span>{next && <a href={url(`/emner/${next.id}/`)}>{next.data.title} →</a>}</span>
+      </nav>
+    </div>
+    <aside class="side">
+      {relaterede.length > 0 && (
+        <section><h3>Relaterede emner</h3>{relaterede.map((r) => <a class="chip" href={url(`/emner/${r.id}/`)} data-slug={r.id}>{r.data.title}</a>)}</section>
+      )}
+      {sammeBlik.length > 0 && (
+        <section><h3>Samme blik</h3>{sammeBlik.map((r) => <a class="chip" href={url(`/emner/${r.id}/`)} data-slug={r.id}>{r.data.title}</a>)}</section>
+      )}
+      <section><h3>Forelæsning</h3><ul>{forel.map((f) => <li>{f!.nr}. {f!.titel}{f!.dato ? ` (${f!.dato})` : ''}</li>)}</ul></section>
+      {e.data.kilder.length > 0 && <section><h3>Kilder i raw/</h3><ul>{e.data.kilder.map((k) => <li>{k}</li>)}</ul></section>}
+      {e.data.nøgleord.length > 0 && <section><h3>Nøgleord</h3><span class="hint">{e.data.nøgleord.join(' · ')}</span></section>}
+    </aside>
+  </div>
+</Base>

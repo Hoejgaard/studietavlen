@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!-- Reference: inspiration fra https://particles.casberry.in/ (JARVIS-HUD). Indsat af Alexander 19.10.2026.
+     Bruges kun som stemningsreference til site/, ikke som kode der skal genbruges direkte. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particles Swarm Export</title>
+    <style>body { margin: 0; overflow: hidden; background: #000; }</style>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        const COUNT = 20000;
+        const SPEED_MULT = 1;
+        const AUTO_SPIN = true;
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.01);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.set(0, 0, 100);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = AUTO_SPIN;
+        controls.autoRotateSpeed = 2.0;
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.strength = 1.8; bloomPass.radius = 0.4; bloomPass.threshold = 0;
+        composer.addPass(bloomPass);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+        const target = new THREE.Vector3();
+
+        const geometry = new THREE.TetrahedronGeometry(0.25);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, COUNT);
+        instancedMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        scene.add(instancedMesh);
+
+        const positions = [];
+        for(let i=0; i<COUNT; i++) {
+            positions.push(new THREE.Vector3((Math.random()-0.5)*100, (Math.random()-0.5)*100, (Math.random()-0.5)*100));
+            instancedMesh.setColorAt(i, color.setHex(0x00ff88));
+        }
+
+        const PARAMS = {"voice":0,"demo":1,"size":55,"tilt":0.35,"warm":0};
+        const addControl = (id, label, min, max, val) => PARAMS[id] !== undefined ? PARAMS[id] : val;
+        const setInfo = () => {};
+        const annotate = () => {};
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime() * SPEED_MULT;
+            controls.update();
+
+            const count = COUNT;
+            for(let i=0; i<COUNT; i++) {
+                 const voice = addControl("voice", "Voice Level (mic)", 0, 1, 0.0);
+                 const demo = addControl("demo", "Auto Speech Demo", 0, 1, 1.0);
+                 const size = addControl("size", "HUD Size", 20, 120, 55);
+                 const tilt = addControl("tilt", "Holo Tilt", 0, 1.2, 0.35);
+                 const warm = addControl("warm", "Gold Accent", 0, 1, 0.0);
+
+                 const TAU = 6.283185307;
+                 const R = size;
+                 const gate = Math.min(1, Math.max(0, (Math.sin(time * 0.6) + 0.3) * 2));
+                 const syl = Math.pow(0.5 + 0.5 * Math.sin(time * 5.3), 1.5) * (0.6 + 0.4 * Math.sin(time * 2.1 + 1.0));
+                 const level = Math.min(1, Math.max(voice, demo * gate * syl * 1.4));
+
+                 const hs = Math.sin(i * 12.9898) * 43758.5453;
+                 const h = hs - Math.floor(hs);
+                 const hs2 = Math.sin(i * 78.233 + 1.7) * 12543.1234;
+                 const h2 = hs2 - Math.floor(hs2);
+
+                 const tt = i / count;
+                 let x = 0, y = 0, z = 0;
+                 let hue = 0.53, sat = 0.9, lit = 0.5;
+
+                 if (tt < 0.10) {
+                   const u = tt / 0.10;
+                   const ph = Math.acos(1 - 2 * u);
+                   const th = i * 2.39996;
+                   const cr = R * 0.17 * (0.35 + 0.65 * h) * (1 + level * 0.6 + 0.08 * Math.sin(time * 3 + h * 6));
+                   x = cr * Math.sin(ph) * Math.cos(th);
+                   y = cr * Math.cos(ph);
+                   z = cr * Math.sin(ph) * Math.sin(th);
+                   hue = 0.52;
+                   sat = Math.max(0.1, 0.55 - level * 0.35);
+                   lit = Math.min(0.92, 0.6 + 0.25 * h + level * 0.2);
+                 } else if (tt < 0.55) {
+                   const k = (tt - 0.10) / 0.45;
+                   const kn = k * 5;
+                   const n = Math.floor(kn);
+                   const wn = kn - n;
+                   const segs = 6 + n * 4;
+                   const sc = wn * segs;
+                   const cell = Math.floor(sc);
+                   const fr = sc - cell;
+                   const dir = 1 - 2 * (n % 2);
+                   const a = (cell + fr * 0.6) * TAU / segs + time * (0.25 + 0.12 * n) * dir * (1 + level * 2);
+                   const rad = R * (0.45 + n * 0.27) * (1 + level * 0.04 * (n + 1) * Math.sin(time * 6 - n * 1.3)) + (h - 0.5) * R * 0.015;
+                   x = Math.cos(a) * rad;
+                   y = Math.sin(a) * rad;
+                   z = (n - 2) * R * 0.07 + (h2 - 0.5) * R * 0.01;
+                   hue = 0.54 - n * 0.012;
+                   sat = 0.9;
+                   lit = 0.38 + 0.15 * Math.sin(a * 2 - time * 3) + level * 0.2 + fr * 0.05;
+                 } else if (tt < 0.70) {
+                   const k = (tt - 0.55) / 0.15;
+                   const km = k * 72;
+                   const m = Math.floor(km);
+                   const al = km - m;
+                   const major = (m % 6 === 0) ? 1 : 0;
+                   const pulse = Math.sin(m * 0.5 + time * 8);
+                   const len = R * (0.05 + 0.07 * major) * (1 + level * 0.8 * pulse * pulse);
+                   const a = m * TAU / 72 + time * 0.08;
+                   const rad = R * 1.85 + al * len;
+                   x = Math.cos(a) * rad;
+                   y = Math.sin(a) * rad;
+                   z = 0;
+                   hue = 0.52 - major * 0.03;
+                   sat = 0.85 - major * 0.3;
+                   lit = 0.35 + major * 0.3 + level * 0.15;
+                 } else if (tt < 0.88) {
+                   const k = (tt - 0.70) / 0.18;
+                   const layer = Math.floor(h * 3);
+                   const a = k * TAU;
+                   const wv = Math.sin(a * 7 + time * 9) * 0.5 + Math.sin(a * 13 - time * 13) * 0.3 + Math.sin(a * 3 + time * 5) * 0.2;
+                   const wave = level * R * 0.2 * wv * (1 - layer * 0.25);
+                   const rad = R * 1.3 + layer * R * 0.05 + wave + (h2 - 0.5) * R * 0.01;
+                   x = Math.cos(a) * rad;
+                   y = Math.sin(a) * rad;
+                   z = layer * R * 0.02;
+                   hue = 0.55 - level * 0.05;
+                   sat = 0.9 - level * 0.4;
+                   lit = Math.min(0.92, 0.45 + level * 0.4 + Math.abs(wv) * level * 0.2);
+                 } else if (tt < 0.95) {
+                   const sw = time * 1.1;
+                   const trail = h2 * 1.2;
+                   const a = sw - trail;
+                   const rad = R * (0.3 + 1.15 * h);
+                   x = Math.cos(a) * rad;
+                   y = Math.sin(a) * rad;
+                   z = (h - 0.5) * R * 0.02;
+                   hue = 0.5;
+                   sat = 0.8;
+                   lit = 0.12 + 0.5 * (1 - trail / 1.2) * (0.6 + level * 0.4);
+                 } else {
+                   const hh = h + time * (0.15 + level * 0.5);
+                   const life = hh - Math.floor(hh);
+                   const a = i * 2.3;
+                   const rad = R * (0.2 + life * 2.0);
+                   x = Math.cos(a) * rad;
+                   y = Math.sin(a) * rad;
+                   z = (h2 - 0.5) * R * 0.4 * life;
+                   hue = 0.5;
+                   sat = 0.7;
+                   lit = Math.min(0.9, 0.1 + 0.7 * (1 - life) * (0.4 + level));
+                 }
+
+                 const sway = Math.sin(time * 0.25) * 0.25;
+                 const cs = Math.cos(sway);
+                 const sn = Math.sin(sway);
+                 const x2 = x * cs + z * sn;
+                 const z2 = -x * sn + z * cs;
+                 const ct = Math.cos(tilt);
+                 const st = Math.sin(tilt);
+                 target.set(x2, y * ct - z2 * st, y * st + z2 * ct);
+
+                 color.setHSL(hue - warm * 0.44, Math.min(1, Math.max(0, sat)), Math.min(0.95, Math.max(0.02, lit)));
+
+                 if (i === 0) {
+                   setInfo("J.A.R.V.I.S. Interface", "Holographic HUD: arc-reactor core, counter-rotating segmented rings, radar sweep, and a voice waveform ring that reacts to speech level.");
+                   annotate("core", new THREE.Vector3(0, 0, 0), "J.A.R.V.I.S.");
+                   annotate("wave", new THREE.Vector3(0, size * 1.45, 0), "Voice Analysis");
+                 }
+
+                 positions[i].lerp(target, 0.1);
+                 dummy.position.copy(positions[i]);
+                 dummy.updateMatrix();
+                 instancedMesh.setMatrixAt(i, dummy.matrix);
+                 instancedMesh.setColorAt(i, color);
+            }
+            instancedMesh.instanceMatrix.needsUpdate = true;
+            instancedMesh.instanceColor.needsUpdate = true;
+            composer.render();
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { alleEmner, grupperEfterBlik, begreberFra } from '../../lib/data';
+import { url } from '../../lib/url';
+const emner = await alleEmner();
+const grupper = grupperEfterBlik(emner).map((g) => ({
+  ...g,
+  rows: g.emner.flatMap((e) => begreberFra(e.body).map((b) => ({ ...b, slug: e.id, title: e.data.title }))),
+}));
+const antal = grupper.reduce((n, g) => n + g.rows.length, 0);
+---
+<Base title="Begreber" aktiv="begreber">
+  <div class="eyebrow">Begreber til eksamen · {antal} i alt · fra alle emners "Begreber til eksamen"</div>
+  <h1 class="page">Begreber</h1>
+  <p class="lead">De begreber, man skal kunne bruge aktivt for at løfte karakteren, forklaret på almindeligt dansk. Filtrér, og klik på emnet for sammenhængen.</p>
+  <div class="filter"><input id="bf" type="search" placeholder="Filtrér begreber…" aria-label="Filtrér begreber" /><span class="hint" id="bcount">{antal} begreber</span></div>
+  {grupper.map((g) => (
+    <section class="begreb-grp" data-grp>
+      <h2>{g.label}</h2>
+      {g.rows.map((r) => (
+        <div class="begreb" data-text={`${r.begreb} ${r.forklaring} ${r.title}`.toLowerCase()}>
+          <b>{r.begreb}</b>
+          <span>{r.forklaring}</span>
+          <a href={url(`/emner/${r.slug}/`)}>{r.title} →</a>
+        </div>
+      ))}
+    </section>
+  ))}
+  <script>
+    const f = document.getElementById('bf') as HTMLInputElement;
+    const count = document.getElementById('bcount')!;
+    const rows = [...document.querySelectorAll<HTMLElement>('.begreb')];
+    const grps = [...document.querySelectorAll<HTMLElement>('[data-grp]')];
+    f.addEventListener('input', () => {
+      const words = f.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+      let n = 0;
+      rows.forEach((r) => { const hit = words.every((w) => r.dataset.text!.includes(w)); r.classList.toggle('hide', !hit); if (hit) n++; });
+      grps.forEach((g) => (g.style.display = g.querySelector('.begreb:not(.hide)') ? '' : 'none'));
+      count.textContent = `${n} begreber`;
+    });
+  </script>
+</Base>

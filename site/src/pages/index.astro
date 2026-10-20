@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Ringe from '../components/Ringe.astro';
+import Tavle from '../components/Tavle.astro';
+import { alleEmner } from '../lib/data';
+const emner = await alleEmner();
+---
+<Base title="Studietavlen" aktiv="ringe" fuld>
+  <Ringe emner={emner} />
+  <div class="mobil-tavle wrap">
+    <p class="lead">Ringe-visningen kræver en bred skærm. Her er alle {emner.length} emner som tavle.</p>
+    <Tavle emner={emner} />
+  </div>
+</Base>

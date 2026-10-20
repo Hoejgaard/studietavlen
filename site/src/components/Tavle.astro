@@ -1,0 +1,21 @@
+---
+import { grupperEfterBlik, dots, type Emne } from '../lib/data';
+import { url } from '../lib/url';
+
+interface Props { emner: Emne[] }
+const { emner } = Astro.props;
+const grupper = grupperEfterBlik(emner);
+---
+<div class="groups">
+  {grupper.map((g) => (
+    <section class="group" aria-labelledby={`g-${g.label}`}>
+      <h2 id={`g-${g.label}`}>{g.label} <span>{g.emner.length}</span></h2>
+      {g.emner.map((e) => (
+        <a class:list={['card', `r${e.data.relevans}`]} href={url(`/emner/${e.id}/`)} data-slug={e.id}>
+          <div class="t">{e.data.title}</div>
+          <div class="m">{e.data.teoretikere.slice(0, 2).join(', ')} · <span class="dots" aria-label={`relevans ${e.data.relevans} af 5`}>{dots(e.data.relevans)}</span></div>
+        </a>
+      ))}
+    </section>
+  ))}
+</div>

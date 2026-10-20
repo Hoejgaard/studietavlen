@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { alleEmner, grupperEfterBlik } from '../../lib/data';
+import { url } from '../../lib/url';
+const emner = await alleEmner();
+const grupper = grupperEfterBlik(emner).filter((g) => g.blik !== 'Cases' && g.blik !== 'Grundlag og metode');
+const metode = emner.filter((e) => e.data.blik === 'Grundlag og metode');
+---
+<Base title="Optik" aktiv="optik">
+  <div class="eyebrow">Undervisers oversigt · slides lektion 5, side 5-6 · udvidet med lektion 6-8</div>
+  <h1 class="page">Fagets analytiske optik</h1>
+  <p class="lead">Det, der skal huskes om hver teori: hvem står bag, hvilken interesse har de, og hvilke fænomener er i fokus, og hvor ser vi dem i dag. Klik på en række for hele emnet. Det er den side, man terper fra før eksamen.</p>
+  <div class="optik-scroll">
+    <table class="optik">
+      <thead><tr><th>Blik</th><th>Bærende teoretikere</th><th>Interesse</th><th>Hvilke fænomener er i fokus, og hvor ser vi dem i dag?</th><th></th></tr></thead>
+      <tbody>
+        {grupper.map((g) => g.emner.map((e, i) => (
+          <tr class:list={{ first: i === 0 }} data-slug={e.id}>
+            <td class="blik">{i === 0 ? g.label : ''}</td>
+            <td>{e.data.teoretikere.join(', ')}</td>
+            <td>{e.data.interesse}</td>
+            <td>{e.data.faenomener}</td>
+            <td><a href={url(`/emner/${e.id}/`)} aria-label={`Åbn ${e.data.title}`}>→</a></td>
+          </tr>
+        )))}
+      </tbody>
+    </table>
+  </div>
+  <h2 class="eyebrow" style="margin-top:28px">Grundlag og metode (bruges med alle blikke)</h2>
+  <ul>
+    {metode.map((e) => <li><a href={url(`/emner/${e.id}/`)}>{e.data.title}</a> <span class="hint">· {e.data.kort}</span></li>)}
+  </ul>
+</Base>

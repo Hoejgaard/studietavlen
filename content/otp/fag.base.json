@@ -1,0 +1,24 @@
+{
+  "kort": "otp",
+  "navn": "Organisering i teori og praksis",
+  "beskrivelse": "HD1-fag på CBS, efterår 2026, underviser Yvonne Barnholdt. Klassiske og moderne organisationsteorier som 'blikke' på organisation, individ og ledelse. Eksamen: synopsis i grupper på baggrund af en case (udleveres 6. november, afleveres 9. november), mundtlig gruppeeksamen uge 49.",
+  "underviser": "Yvonne Barnholdt, ekstern lektor, Institut for Organisation, CBS",
+  "eksamen": {
+    "form": "Synopsis i grupper på 2-4 studerende, maks 5 sider à 2.275 anslag, efterfulgt af mundtlig gruppeeksamen med individuel vurdering",
+    "case_udleveres": "2026-11-06T09:00",
+    "aflevering": "2026-11-09T09:00",
+    "mundtlig": "Uge 49, 20 min inkl. votering, karaktergivning og feedback"
+  },
+  "forelaesninger": [
+    { "nr": 1, "titel": "Introduktion, Scientific Management og bureaukrati", "dato": "2026-08-26", "slides": "Fremmøde E 26.pptx" },
+    { "nr": 2, "titel": "Human Relations og motivation", "dato": "2026-09-02", "slides": "2. modul. Human Relations.  Onsdag E26.pptx" },
+    { "nr": 3, "titel": "Contingency-teori: Woodward og Mintzberg", "dato": "2026-09-09", "slides": "Modul 3 - Contingency E 26.pptx" },
+    { "nr": 4, "titel": "Institutionel teori", "dato": "2026-09-16", "slides": "lektion 4 Institutionel teori  E 26.pptx" },
+    { "nr": 5, "titel": "Organisationskultur", "dato": "2026-09-23", "slides": "Slides - Modul 5 Kultur E 26 senest onsdag.pptx" },
+    { "nr": 6, "titel": "Organisatoriske forandringer", "dato": "2026-09-30", "slides": "lektion 6  Organisatoriske forandringer-E 26.pptx" },
+    { "nr": 7, "titel": "Ledelse som meningsskabelse (Weick)", "dato": "2026-10-07", "slides": "Lektion 7-Weick - meningskabelse. E26.pptx" },
+    { "nr": 8, "titel": "Ledelse som magt", "dato": "2026-10-14", "slides": "Lektion 8 Magt 26  E.pptx" },
+    { "nr": 9, "titel": "Afslutning: Grint, Danske Bank-casen og eksamensforberedelse", "dato": null, "slides": null }
+  ],
+  "noter": "Datoer for lektion 2, 3, 5 og 8 er skønnet ud fra ugenumre i slides og noter. Lektion 9 er ikke afholdt."
+}

@@ -1,0 +1,1172 @@
+{
+  "kort": "otp",
+  "navn": "Organisering i teori og praksis",
+  "beskrivelse": "HD1-fag på CBS, efterår 2026, underviser Yvonne Barnholdt. Klassiske og moderne organisationsteorier som 'blikke' på organisation, individ og ledelse. Eksamen: synopsis i grupper på baggrund af en case (udleveres 6. november, afleveres 9. november), mundtlig gruppeeksamen uge 49.",
+  "underviser": "Yvonne Barnholdt, ekstern lektor, Institut for Organisation, CBS",
+  "eksamen": {
+    "form": "Synopsis i grupper på 2-4 studerende, maks 5 sider à 2.275 anslag, efterfulgt af mundtlig gruppeeksamen med individuel vurdering",
+    "case_udleveres": "2026-11-06T09:00",
+    "aflevering": "2026-11-09T09:00",
+    "mundtlig": "Uge 49, 20 min inkl. votering, karaktergivning og feedback"
+  },
+  "kategorier": [
+    "Grundlag og metode",
+    "Klassisk organisationsteori",
+    "Human Relations og motivation",
+    "Struktur og omverden",
+    "Organisationskultur",
+    "Organisatoriske forandringer",
+    "Mening og magt",
+    "Cases"
+  ],
+  "blikke": [
+    "Grundlag og metode",
+    "Scientific Management",
+    "Det legitimt rationelle (bureaukrati)",
+    "Human Relations",
+    "Contingency-teori",
+    "Konfigurationsteori",
+    "Institutionel teori",
+    "Kulturblik",
+    "Forandringsblik",
+    "Meningsblik",
+    "Magtblik",
+    "Cases"
+  ],
+  "forelaesninger": [
+    {
+      "nr": 1,
+      "titel": "Introduktion, Scientific Management og bureaukrati",
+      "dato": "2026-08-26",
+      "slides": "Fremmøde E 26.pptx",
+      "emner": [
+        "bureaukrati-weber",
+        "case-danske-bank",
+        "formel-uformel-organisation",
+        "kronologi-lukkede-aabne-systemer",
+        "problemformulering-synopsis",
+        "scientific-management-taylor",
+        "teori-som-blik",
+        "toulmin-argumentation"
+      ]
+    },
+    {
+      "nr": 2,
+      "titel": "Human Relations og motivation",
+      "dato": "2026-09-02",
+      "slides": "2. modul. Human Relations.  Onsdag E26.pptx",
+      "emner": [
+        "bureaukrati-weber",
+        "case-eksempler",
+        "formel-uformel-organisation",
+        "hawthorne-studierne",
+        "herzberg-tofaktorteori",
+        "hrm",
+        "kronologi-lukkede-aabne-systemer",
+        "maslow-behovshierarki",
+        "teori-som-blik"
+      ]
+    },
+    {
+      "nr": 3,
+      "titel": "Contingency-teori: Woodward og Mintzberg",
+      "dato": "2026-09-09",
+      "slides": "Modul 3 - Contingency E 26.pptx",
+      "emner": [
+        "burns-stalker",
+        "contingency-teori",
+        "hawthorne-studierne",
+        "herzberg-tofaktorteori",
+        "kronologi-lukkede-aabne-systemer",
+        "mintzberg-dele-koordinering",
+        "mintzberg-konfigurationer",
+        "problemformulering-synopsis",
+        "teori-som-blik",
+        "toulmin-argumentation",
+        "woodward-teknologi"
+      ]
+    },
+    {
+      "nr": 4,
+      "titel": "Institutionel teori",
+      "dato": "2026-09-16",
+      "slides": "lektion 4 Institutionel teori  E 26.pptx",
+      "emner": [
+        "case-eksempler",
+        "contingency-teori",
+        "contingency-vs-institutionel",
+        "institutionel-teori",
+        "isomorfi",
+        "kronologi-lukkede-aabne-systemer",
+        "mintzberg-dele-koordinering",
+        "mintzberg-konfigurationer",
+        "problemformulering-synopsis",
+        "teori-som-blik"
+      ]
+    },
+    {
+      "nr": 5,
+      "titel": "Organisationskultur",
+      "dato": "2026-09-23",
+      "slides": "Slides - Modul 5 Kultur E 26 senest onsdag.pptx",
+      "emner": [
+        "burns-stalker",
+        "case-danske-bank",
+        "case-eksempler",
+        "contingency-vs-institutionel",
+        "hatch-schultz-symbolisme",
+        "institutionel-teori",
+        "isomorfi",
+        "kronologi-lukkede-aabne-systemer",
+        "kulturbegrebet",
+        "kunda-normativ-kontrol",
+        "lawrence-lorsch",
+        "martin-tre-perspektiver",
+        "problemformulering-synopsis",
+        "schein-kulturniveauer",
+        "teori-som-blik",
+        "toulmin-argumentation"
+      ]
+    },
+    {
+      "nr": 6,
+      "titel": "Organisatoriske forandringer",
+      "dato": "2026-09-30",
+      "slides": "lektion 6  Organisatoriske forandringer-E 26.pptx",
+      "emner": [
+        "case-eksempler",
+        "digital-transformation-tre-praksisser",
+        "feldman-rutiner",
+        "kotter-otte-trin",
+        "kunda-normativ-kontrol",
+        "leavitt-model",
+        "martin-tre-perspektiver",
+        "planlagte-emergerende-forandringer",
+        "schein-kulturniveauer",
+        "teori-som-blik"
+      ]
+    },
+    {
+      "nr": 7,
+      "titel": "Ledelse som meningsskabelse (Weick)",
+      "dato": "2026-10-07",
+      "slides": "Lektion 7-Weick - meningskabelse. E26.pptx",
+      "emner": [
+        "case-eksempler",
+        "digital-transformation-tre-praksisser",
+        "feldman-rutiner",
+        "mann-gulch",
+        "planlagte-emergerende-forandringer",
+        "problemformulering-synopsis",
+        "teori-som-blik",
+        "toulmin-argumentation",
+        "weick-meningsskabelse"
+      ]
+    },
+    {
+      "nr": 8,
+      "titel": "Ledelse som magt",
+      "dato": "2026-10-14",
+      "slides": "Lektion 8 Magt 26  E.pptx",
+      "emner": [
+        "case-eksempler",
+        "kunda-normativ-kontrol",
+        "ledelse-vs-lederskab",
+        "magtens-fire-ansigter",
+        "problemformulering-synopsis",
+        "selvledelse-magtteknologier",
+        "teori-som-blik",
+        "weick-meningsskabelse"
+      ]
+    },
+    {
+      "nr": 9,
+      "titel": "Afslutning: Grint, Danske Bank-casen og eksamensforberedelse",
+      "dato": null,
+      "slides": null,
+      "emner": [
+        "case-danske-bank",
+        "ledelse-vs-lederskab"
+      ]
+    }
+  ],
+  "emner": [
+    {
+      "slug": "bureaukrati-weber",
+      "blik_detalje": "Det legitimt rationelle (det bureaukratiske blik på organisationer)",
+      "title": "Bureaukratiet (Weber)",
+      "kategori": "Klassisk organisationsteori",
+      "blik": "Det legitimt rationelle (bureaukrati)",
+      "relevans": 5,
+      "forelaesning": [
+        1,
+        2
+      ],
+      "kort": "Rationel-legal styreform med seks kendetegn. Loyalitet til embedet, ikke lederen. Kritiseret som jernbur, forsvaret som etisk bolværk.",
+      "teoretikere": [
+        "Max Weber (1864-1920)",
+        "Paul du Gay",
+        "Zinck Pedersen & du Gay (pensumtekst)"
+      ],
+      "interesse": "Embedshierarki, standardisering af opgaver",
+      "faenomener": "Efter hvilke regler og procedurer administreres organisationen? Ses i dag i enhver offentlig forvaltning, i compliance, i 'red tape'-klager.",
+      "relaterede": [
+        "scientific-management-taylor",
+        "isomorfi",
+        "institutionel-teori",
+        "mintzberg-konfigurationer",
+        "magtens-fire-ansigter",
+        "formel-uformel-organisation"
+      ]
+    },
+    {
+      "slug": "burns-stalker",
+      "blik_detalje": "Contingency-teori (situationsbestemt organisationsteori)",
+      "title": "Burns & Stalker: mekaniske og organiske strukturer",
+      "kategori": "Struktur og omverden",
+      "blik": "Contingency-teori",
+      "relevans": 2,
+      "forelaesning": [
+        3,
+        5
+      ],
+      "kort": "Stabile omgivelser kalder på mekaniske strukturer, turbulente omgivelser på organiske. Står på undervisers optik-oversigt, men er tyndt dækket i noterne.",
+      "teoretikere": [
+        "Tom Burns & G.M. Stalker"
+      ],
+      "interesse": "Stabil/turbulent omverden",
+      "faenomener": "Har organisationen et godt fit mellem forandringer i omverden og den faktiske organisering?",
+      "relaterede": [
+        "contingency-teori",
+        "woodward-teknologi",
+        "mintzberg-konfigurationer",
+        "lawrence-lorsch"
+      ]
+    },
+    {
+      "slug": "case-danske-bank",
+      "blik_detalje": "Alle blikke (øvelsescase)",
+      "title": "Case: Danske Bank i modvind",
+      "kategori": "Cases",
+      "blik": "Cases",
+      "relevans": 4,
+      "forelaesning": [
+        1,
+        5,
+        9
+      ],
+      "kort": "Fagets gennemgående case. Bruges i lektion 1, 5 og 9 til at øve Toulmin-argumenter med alle teorierne. Selve casen og bilagene er ikke uploadet endnu.",
+      "teoretikere": [
+        "Bruges med Taylor, Weber, Hawthorne, Herzberg, contingency, institutionel teori, kultur, mening"
+      ],
+      "interesse": "At træne analyse med belæg (bilag), hjemmel (teori) og påstand",
+      "faenomener": "Strukturændring efter krise, topledelsens problemformulering, HR-direktør i direktionen, medarbejdernes reaktion.",
+      "relaterede": [
+        "toulmin-argumentation",
+        "problemformulering-synopsis",
+        "bureaukrati-weber",
+        "hawthorne-studierne",
+        "weick-meningsskabelse",
+        "mann-gulch",
+        "teori-som-blik"
+      ]
+    },
+    {
+      "slug": "case-eksempler",
+      "blik_detalje": "Alle blikke (eksempelkatalog)",
+      "title": "Eksempler fra undervisningen: Clever, Novo Nordisk, CURA, Tech, Disneyland, Hessel",
+      "kategori": "Cases",
+      "blik": "Cases",
+      "relevans": 2,
+      "forelaesning": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "kort": "Katalog over de cases, slides og noter bruger, med den teori hver illustrerer. Praktisk til at finde et eksempel hurtigt, når man skriver.",
+      "teoretikere": [
+        "Se de enkelte emner"
+      ],
+      "interesse": "At koble teori til konkrete organisationer",
+      "faenomener": "Medledelse, kulturskifte efter ny direktør, offentlig digitalisering, stærk kultur i high-tech, servicekultur, vækst i en bilforhandler.",
+      "relaterede": [
+        "case-danske-bank",
+        "problemformulering-synopsis",
+        "mintzberg-konfigurationer",
+        "schein-kulturniveauer",
+        "kunda-normativ-kontrol",
+        "magtens-fire-ansigter",
+        "digital-transformation-tre-praksisser",
+        "isomorfi"
+      ]
+    },
+    {
+      "slug": "contingency-teori",
+      "blik_detalje": "Contingency-teori (situationsbestemt organisationsteori)",
+      "title": "Contingency-teori: åbne systemer og fit",
+      "kategori": "Struktur og omverden",
+      "blik": "Contingency-teori",
+      "relevans": 4,
+      "forelaesning": [
+        3,
+        4
+      ],
+      "kort": "Der findes ikke én bedste måde at organisere på. Strukturen skal passe til situationen: alder og størrelse, teknisk system, omgivelser og magt.",
+      "teoretikere": [
+        "Woodward",
+        "Burns & Stalker",
+        "Lawrence & Lorsch",
+        "Mintzberg",
+        "John Child (kritik)",
+        "William Scott"
+      ],
+      "interesse": "Fit mellem situation og struktur. Organisationen som åbent system.",
+      "faenomener": "Hvilke situationsfaktorer påvirker organisationens organisering, og hvordan bliver de tilpasset? Har organisationen et godt fit mellem forandringer i omverden og faktisk organisering?",
+      "relaterede": [
+        "woodward-teknologi",
+        "burns-stalker",
+        "lawrence-lorsch",
+        "mintzberg-konfigurationer",
+        "mintzberg-dele-koordinering",
+        "institutionel-teori",
+        "contingency-vs-institutionel",
+        "kronologi-lukkede-aabne-systemer"
+      ]
+    },
+    {
+      "slug": "contingency-vs-institutionel",
+      "blik_detalje": "Contingency-teori og institutionel teori (sammenligning)",
+      "title": "Contingency-teori vs. institutionel teori",
+      "kategori": "Struktur og omverden",
+      "blik": "Contingency-teori",
+      "relevans": 4,
+      "forelaesning": [
+        4,
+        5
+      ],
+      "kort": "To omverdensteorier: contingency ser objektive faktorer, der bestemmer strukturen. Institutionel teori ser socialt skabte forventninger, man imiterer.",
+      "teoretikere": [
+        "Woodward, Mintzberg (contingency)",
+        "Meyer & Rowan, DiMaggio & Powell (institutionel)"
+      ],
+      "interesse": "Hvad i omverdenen former organisationen: objektive faktorer eller sociale forventninger?",
+      "faenomener": "Samme strukturændring kan forklares som tilpasning til situation eller som jagt på legitimitet. Oplagt diskussionsemne i synopsis.",
+      "relaterede": [
+        "contingency-teori",
+        "institutionel-teori",
+        "isomorfi",
+        "mintzberg-konfigurationer",
+        "kronologi-lukkede-aabne-systemer"
+      ]
+    },
+    {
+      "slug": "digital-transformation-tre-praksisser",
+      "blik_detalje": "Forandringsblik (konstruktivistisk, distribueret ledelse)",
+      "title": "Ledelse af digital transformation: tre praksisser (Nielsen, Elmholdt & Noesgaard)",
+      "kategori": "Organisatoriske forandringer",
+      "blik": "Forandringsblik",
+      "relevans": 4,
+      "forelaesning": [
+        6,
+        7
+      ],
+      "kort": "Tilpasnings-, tilslutnings- og forventningsledelse: tre sammenvævede praksisser, ikke faser. Teknologiens betydning skal formes løbende.",
+      "teoretikere": [
+        "Nielsen, Elmholdt & Noesgaard (2020)",
+        "Crevani (2018)",
+        "Rouleau (2005)",
+        "Hanelt et al. (2020)"
+      ],
+      "interesse": "Tilpasnings-, tilslutnings- og forventningsledelse",
+      "faenomener": "Hvordan formes aktørernes forståelse af teknologi under digital transformation? Ses i dag i ethvert IT-implementeringsprojekt: go-live, superbrugere, framing og skuffelse.",
+      "relaterede": [
+        "planlagte-emergerende-forandringer",
+        "kotter-otte-trin",
+        "weick-meningsskabelse",
+        "feldman-rutiner",
+        "schein-kulturniveauer",
+        "kunda-normativ-kontrol",
+        "leavitt-model",
+        "case-eksempler"
+      ]
+    },
+    {
+      "slug": "feldman-rutiner",
+      "blik_detalje": "Forandringsblik (emergerende, konstruktivistisk)",
+      "title": "Rutiner som kilde til kontinuerlig forandring (Feldman)",
+      "kategori": "Organisatoriske forandringer",
+      "blik": "Forandringsblik",
+      "relevans": 4,
+      "forelaesning": [
+        6,
+        7
+      ],
+      "kort": "Rutiner ændrer sig indefra, hver gang de udføres, fordi resultater skaber nye ideer. Ostensivt vs. performativt, repairing, expanding, striving.",
+      "teoretikere": [
+        "Martha Feldman (2000)",
+        "Pentland & Rueter",
+        "Latour (ostensiv/performativ)"
+      ],
+      "interesse": "Rutiner som kilde til kontinuerlig forandring",
+      "faenomener": "Hvordan ændres rutiner, når de udføres? Hvem har agency? Ses i dag i kaizen, agile metoder, hverdagsinnovation, budgetforhandlinger.",
+      "relaterede": [
+        "planlagte-emergerende-forandringer",
+        "weick-meningsskabelse",
+        "digital-transformation-tre-praksisser",
+        "kunda-normativ-kontrol",
+        "institutionel-teori"
+      ]
+    },
+    {
+      "slug": "formel-uformel-organisation",
+      "blik_detalje": "Fagets grundskel (bruges af alle blikke)",
+      "title": "Formel og uformel organisation",
+      "kategori": "Grundlag og metode",
+      "blik": "Grundlag og metode",
+      "relevans": 3,
+      "forelaesning": [
+        1,
+        2
+      ],
+      "kort": "Den formelle organisation er struktur, arbejdsdeling og fælles formål. Den uformelle er de sociale relationer, der opstår uden formål, men med store resultater.",
+      "teoretikere": [
+        "Barnard (1938)",
+        "Roethlisberger & Dickson (1939)"
+      ],
+      "interesse": "To blikke på det samme fænomen: struktur eller sociale relationer",
+      "faenomener": "Organisationsdiagrammer, regler og procedurer over for uskrevne regler, grupper og status. Spørgsmålet er, om de to understøtter eller modarbejder hinanden.",
+      "relaterede": [
+        "teori-som-blik",
+        "hawthorne-studierne",
+        "kronologi-lukkede-aabne-systemer",
+        "bureaukrati-weber"
+      ]
+    },
+    {
+      "slug": "hatch-schultz-symbolisme",
+      "blik_detalje": "Kulturblik (symbolisme)",
+      "title": "Hatch & Schultz: symbolisme og organisationsidentitet",
+      "kategori": "Organisationskultur",
+      "blik": "Kulturblik",
+      "relevans": 2,
+      "forelaesning": [
+        5
+      ],
+      "kort": "Symbolisme: kultur som betydninger, medlemmerne selv fortolker. Hvordan organisationen ser sig selv. Modstykke til Schein. Kun på undervisers oversigt.",
+      "teoretikere": [
+        "Mary Jo Hatch & Majken Schultz"
+      ],
+      "interesse": "Betydningsdannelse og symbolfortolkning i organisationen (identitet)",
+      "faenomener": "Hvordan opfatter organisationen sig selv? Hvilke symboler, fortællinger og ritualer har betydning?",
+      "relaterede": [
+        "schein-kulturniveauer",
+        "kulturbegrebet",
+        "martin-tre-perspektiver",
+        "weick-meningsskabelse"
+      ]
+    },
+    {
+      "slug": "hawthorne-studierne",
+      "blik_detalje": "Human Relations (sociologisk og psykologisk blik på organisationen)",
+      "title": "Hawthorne-studierne (Roethlisberger & Dickson)",
+      "kategori": "Human Relations og motivation",
+      "blik": "Human Relations",
+      "relevans": 5,
+      "forelaesning": [
+        2,
+        3
+      ],
+      "kort": "Virksomheden er et socialt system. Den uformelle organisation og dens følelseslogik bestemmer mere for produktiviteten end lys, løn og formelle regler.",
+      "teoretikere": [
+        "Elton Mayo (1880-1949)",
+        "Roethlisberger & Dickson (1939)"
+      ],
+      "interesse": "Social organisering, medarbejdermotivation. Uformelle spilleregler.",
+      "faenomener": "Hvordan er medarbejdernes engagement en del af organiseringen? Hvilke mønstre og relationer kan observeres mellem grupperinger og afdelinger? Ses i dag i uformelle normer, statussymboler, modstand mod forandring.",
+      "relaterede": [
+        "scientific-management-taylor",
+        "herzberg-tofaktorteori",
+        "formel-uformel-organisation",
+        "maslow-behovshierarki",
+        "magtens-fire-ansigter",
+        "schein-kulturniveauer"
+      ]
+    },
+    {
+      "slug": "herzberg-tofaktorteori",
+      "blik_detalje": "Human Relations (psykologisk blik på individet)",
+      "title": "Herzbergs tofaktorteori",
+      "kategori": "Human Relations og motivation",
+      "blik": "Human Relations",
+      "relevans": 5,
+      "forelaesning": [
+        2,
+        3
+      ],
+      "kort": "Hygiejnefaktorer kan kun fjerne utilfredshed. Kun motivatorer i selve arbejdet motiverer. Modsat utilfredshed er ikke tilfredshed, men ingen utilfredshed.",
+      "teoretikere": [
+        "Frederick Herzberg (1923-2000)"
+      ],
+      "interesse": "2-faktor motivationsteori",
+      "faenomener": "Hvordan kan medarbejderens indre motivation og hygiejnefaktorer (det, virksomheden tilbyder) styrkes? Ses i dag i bonusordninger, jobdesign, MUS, 'job enrichment'.",
+      "relaterede": [
+        "hawthorne-studierne",
+        "maslow-behovshierarki",
+        "scientific-management-taylor",
+        "kunda-normativ-kontrol",
+        "selvledelse-magtteknologier"
+      ]
+    },
+    {
+      "slug": "hrm",
+      "blik_detalje": "Human Relations (praktisk anvendelse i organisationer)",
+      "title": "HRM som organisatorisk funktion",
+      "kategori": "Human Relations og motivation",
+      "blik": "Human Relations",
+      "relevans": 2,
+      "forelaesning": [
+        2
+      ],
+      "kort": "HRM er det organisatoriske ophæng for mennesker i organisationen: fra løn- og personalekontor til strategisk HR. Menneskelig adfærd er blevet produktet.",
+      "teoretikere": [
+        "Ingen navngivet teoretiker i materialet"
+      ],
+      "interesse": "Hvordan Human Relations-tankegangen er institutionaliseret som funktion",
+      "faenomener": "Personalepolitikker, onboarding, kompetenceudvikling, lederudvikling, personlighedstest. Ses i enhver HR-afdeling.",
+      "relaterede": [
+        "hawthorne-studierne",
+        "herzberg-tofaktorteori",
+        "kunda-normativ-kontrol",
+        "isomorfi"
+      ]
+    },
+    {
+      "slug": "institutionel-teori",
+      "blik_detalje": "Institutionel teori",
+      "title": "Institutionel teori: legitimitet og institutioner",
+      "kategori": "Struktur og omverden",
+      "blik": "Institutionel teori",
+      "relevans": 5,
+      "forelaesning": [
+        4,
+        5
+      ],
+      "kort": "Organisationer overlever ikke ved at være effektive, men ved at være legitime. De tilpasser sig institutioner: det man må, bør og kan gøre.",
+      "teoretikere": [
+        "Meyer & Rowan (1977)",
+        "W. Richard Scott",
+        "Jepperson",
+        "DiMaggio & Powell (1983)"
+      ],
+      "interesse": "Legitimitet (regulativ, normativ, kognitiv)",
+      "faenomener": "Hvilke socialt skabte forestillinger påvirker organisationens virke? Ses i dag i bæredygtighedsrapporter, certificeringer, ledelsesmoder, 'sådan gør man'.",
+      "relaterede": [
+        "isomorfi",
+        "contingency-vs-institutionel",
+        "contingency-teori",
+        "bureaukrati-weber",
+        "magtens-fire-ansigter",
+        "hrm"
+      ]
+    },
+    {
+      "slug": "isomorfi",
+      "blik_detalje": "Institutionel teori",
+      "title": "Isomorfi (DiMaggio & Powell)",
+      "kategori": "Struktur og omverden",
+      "blik": "Institutionel teori",
+      "relevans": 5,
+      "forelaesning": [
+        4,
+        5
+      ],
+      "kort": "Organisationer i samme felt bliver ens gennem tvang, efterligning og professionalisering. Ikke fordi det er mere effektivt, men fordi det giver legitimitet.",
+      "teoretikere": [
+        "Paul DiMaggio & Walter Powell (1983)"
+      ],
+      "interesse": "Feltorganisering og isomorfi (ligne de andre)",
+      "faenomener": "Hvordan opleves pres og forventninger fra det netværk, organisationen er afhængig af eller en del af? Ses i dag i digitalisering, ESG-rapportering, ledelsesmoder, standarder.",
+      "relaterede": [
+        "institutionel-teori",
+        "bureaukrati-weber",
+        "contingency-vs-institutionel",
+        "magtens-fire-ansigter",
+        "hrm"
+      ]
+    },
+    {
+      "slug": "kotter-otte-trin",
+      "blik_detalje": "Forandringsblik (planlagt, funktionalistisk)",
+      "title": "Kotters otte trin",
+      "kategori": "Organisatoriske forandringer",
+      "blik": "Forandringsblik",
+      "relevans": 3,
+      "forelaesning": [
+        6
+      ],
+      "kort": "Strategisk forandringsledelse top-down i otte trin, fra oplevelse af nødvendighed til forankring i kulturen. Hvert trin modsvarer en typisk svaghed.",
+      "teoretikere": [
+        "John Kotter (1995/1997)"
+      ],
+      "interesse": "Radikale, top-down forandringer i faser",
+      "faenomener": "Strategiske forandringsprojekter, 'brændende platform', visionskommunikation. Ses i dag i de fleste konsulentdrevne forandringsprogrammer.",
+      "relaterede": [
+        "planlagte-emergerende-forandringer",
+        "digital-transformation-tre-praksisser",
+        "leavitt-model",
+        "weick-meningsskabelse"
+      ]
+    },
+    {
+      "slug": "kronologi-lukkede-aabne-systemer",
+      "blik_detalje": "Oversigt over alle blikke",
+      "title": "Fagets kronologi: fra lukkede til åbne systemer",
+      "kategori": "Grundlag og metode",
+      "blik": "Grundlag og metode",
+      "relevans": 3,
+      "forelaesning": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "kort": "Taylor, Weber og Human Relations ser organisationen som et lukket system. Fra contingency-teori og frem er den et åbent system, der formes af omverdenen.",
+      "teoretikere": [
+        "Hele pensum i kronologisk rækkefølge"
+      ],
+      "interesse": "At placere en teori i tid og i forhold til skellet lukket/åbent og formelt/uformelt",
+      "faenomener": "Hvilke problemer hver epoke forsøgte at løse, og hvorfor den næste teori opstod som svar på den forrige.",
+      "relaterede": [
+        "teori-som-blik",
+        "formel-uformel-organisation",
+        "contingency-teori",
+        "institutionel-teori"
+      ]
+    },
+    {
+      "slug": "kulturbegrebet",
+      "blik_detalje": "Kulturblik",
+      "title": "Kulturbegrebet: konsulent- og iagttagervinkel",
+      "kategori": "Organisationskultur",
+      "blik": "Kulturblik",
+      "relevans": 3,
+      "forelaesning": [
+        5
+      ],
+      "kort": "Kultur kom ind i organisationsteorien i 1980'erne fra antropologien. Konsulentvinklen vil optimere kulturen, iagttagervinklen vil beskrive, hvad den gør.",
+      "teoretikere": [
+        "Peters & Waterman",
+        "John van Maanen",
+        "Majken Schultz"
+      ],
+      "interesse": "At sætte ord på noget oplevet, som det ikke tidligere var muligt at formulere",
+      "faenomener": "Stærke kulturer som forklaring på konkurrenceevne. 'The way we do things around here'. Ses i dag i employer branding, værdisæt, jobopslag der kræver 'kulturfit'.",
+      "relaterede": [
+        "schein-kulturniveauer",
+        "martin-tre-perspektiver",
+        "kunda-normativ-kontrol",
+        "hawthorne-studierne",
+        "formel-uformel-organisation"
+      ]
+    },
+    {
+      "slug": "kunda-normativ-kontrol",
+      "blik_detalje": "Kulturblik (kultur som kontrol)",
+      "title": "Normativ kontrol (Kunda)",
+      "kategori": "Organisationskultur",
+      "blik": "Kulturblik",
+      "relevans": 4,
+      "forelaesning": [
+        5,
+        6,
+        8
+      ],
+      "kort": "Når ledelsen styrer gennem kultur frem for regler og løn, gøres der krav på medarbejderens selv. Frihed og kontrol på én gang; folk lever med ambivalens.",
+      "teoretikere": [
+        "Gideon Kunda (1992/2006)",
+        "Etzioni (utilitaristisk/normativ kontrol)"
+      ],
+      "interesse": "Normativ kontrol: kultur som styringsredskab",
+      "faenomener": "Fungerer kulturen som kontrolinstans? Hvilken medlemsrolle skabes, og kan man modsætte sig den? Ses i dag i 'stærke kulturer', introforløb, purpose, 'vi er en familie'.",
+      "relaterede": [
+        "schein-kulturniveauer",
+        "magtens-fire-ansigter",
+        "selvledelse-magtteknologier",
+        "herzberg-tofaktorteori",
+        "hrm",
+        "case-eksempler"
+      ]
+    },
+    {
+      "slug": "lawrence-lorsch",
+      "blik_detalje": "Contingency-teori (situationsbestemt organisationsteori)",
+      "title": "Lawrence & Lorsch: differentiering og integration",
+      "kategori": "Struktur og omverden",
+      "blik": "Contingency-teori",
+      "relevans": 2,
+      "forelaesning": [
+        5
+      ],
+      "kort": "Jo mere forskellige omgivelser afdelingerne møder, jo mere differentiering, og jo mere integration kræves. Kun nævnt på undervisers oversigt.",
+      "teoretikere": [
+        "Paul Lawrence & Jay Lorsch"
+      ],
+      "interesse": "Intern differentiering og integration",
+      "faenomener": "Hvilke situationsfaktorer påvirker organisationens organisering, og hvordan bliver de tilpasset?",
+      "relaterede": [
+        "contingency-teori",
+        "burns-stalker",
+        "mintzberg-dele-koordinering"
+      ]
+    },
+    {
+      "slug": "leavitt-model",
+      "blik_detalje": "Forandringsblik (planlagt, strukturorienteret)",
+      "title": "Leavitts model",
+      "kategori": "Organisatoriske forandringer",
+      "blik": "Forandringsblik",
+      "relevans": 2,
+      "forelaesning": [
+        6
+      ],
+      "kort": "Fire gensidigt afhængige variable: opgave, struktur, teknologi og aktører. Ændrer man én, påvirkes de andre. Redesign skal skabe sammenhæng.",
+      "teoretikere": [
+        "Harold Leavitt (1965)"
+      ],
+      "interesse": "Organisatorisk variabel som middel til at opnå forandring",
+      "faenomener": "Nye IT-systemer, der kræver ny træning. Nye opgaver, der kræver ny struktur. Ses i enhver implementering.",
+      "relaterede": [
+        "planlagte-emergerende-forandringer",
+        "kotter-otte-trin",
+        "digital-transformation-tre-praksisser",
+        "mintzberg-dele-koordinering"
+      ]
+    },
+    {
+      "slug": "ledelse-vs-lederskab",
+      "blik_detalje": "Magtblik (ledelse som indflydelse)",
+      "title": "Ledelse vs. lederskab",
+      "kategori": "Mening og magt",
+      "blik": "Magtblik",
+      "relevans": 2,
+      "forelaesning": [
+        8,
+        9
+      ],
+      "kort": "Ledelse (management) er en formel position. Lederskab (leadership) er evnen til at udøve indflydelse uanset position. Uden indflydelse findes ledelse ikke.",
+      "teoretikere": [
+        "Fogsgaard & Elmholdt (2015)",
+        "Keith Grint (lektion 9, ikke afholdt)"
+      ],
+      "interesse": "Ledelse er indflydelse er magt",
+      "faenomener": "Hvem leder faktisk i organisationen, uanset titel? Ses i uformelle ledere, superbrugere, 'den, alle spørger'.",
+      "relaterede": [
+        "magtens-fire-ansigter",
+        "weick-meningsskabelse",
+        "formel-uformel-organisation",
+        "digital-transformation-tre-praksisser"
+      ]
+    },
+    {
+      "slug": "magtens-fire-ansigter",
+      "blik_detalje": "Magtblik",
+      "title": "Magtens fire ansigter (Fleming & Spicer)",
+      "kategori": "Mening og magt",
+      "blik": "Magtblik",
+      "relevans": 4,
+      "forelaesning": [
+        8
+      ],
+      "kort": "Magt er tvang, manipulation, dominans og subjektivering. De tre første gør A mod B. Den fjerde skaber identiteter, man ikke kan undslippe.",
+      "teoretikere": [
+        "Peter Fleming & André Spicer",
+        "Clegg et al. (2006)",
+        "Fogsgaard & Elmholdt (2015)"
+      ],
+      "interesse": "Magtens fire ansigter: tvang, manipulation, dominans, subjektivering",
+      "faenomener": "Hvem har magt over hvem, og hvilke identiteter skaber magten? Ses i dag i fyringsrunder, dagsordener, karrierenormer, 'sådan er en dygtig medarbejder'.",
+      "relaterede": [
+        "selvledelse-magtteknologier",
+        "kunda-normativ-kontrol",
+        "bureaukrati-weber",
+        "hawthorne-studierne",
+        "institutionel-teori",
+        "scientific-management-taylor",
+        "case-eksempler"
+      ]
+    },
+    {
+      "slug": "mann-gulch",
+      "blik_detalje": "Meningsblik (socialkonstruktivisme)",
+      "title": "Mann Gulch og KOR: når mening bryder sammen, og når den holder",
+      "kategori": "Mening og magt",
+      "blik": "Meningsblik",
+      "relevans": 3,
+      "forelaesning": [
+        7
+      ],
+      "kort": "To cases fra Weick: 13 røgdykkere dør, fordi ordrerne ikke giver mening. En polsk modstandsbevægelse lykkes, fordi formen gav alle syv ressourcer.",
+      "teoretikere": [
+        "Karl E. Weick (1993, kap. 21)",
+        "Norman Maclean (Young Men and Fire)",
+        "Jonathan Schell (KOR)"
+      ],
+      "interesse": "Hvordan organisationsformen styrker eller svækker ressourcerne til meningsskabelse",
+      "faenomener": "Kriser, omstruktureringer og nye systemer, hvor folk holder fast i den gamle forståelse for længe. Ses i dag i enhver 'det giver ikke mening'-situation.",
+      "relaterede": [
+        "weick-meningsskabelse",
+        "case-danske-bank",
+        "digital-transformation-tre-praksisser",
+        "schein-kulturniveauer"
+      ]
+    },
+    {
+      "slug": "martin-tre-perspektiver",
+      "blik_detalje": "Kulturblik (kritik af funktionalismen)",
+      "title": "Martins tre perspektiver på kultur",
+      "kategori": "Organisationskultur",
+      "blik": "Kulturblik",
+      "relevans": 3,
+      "forelaesning": [
+        5,
+        6
+      ],
+      "kort": "Kultur som én enhed (integration), flere subkulturer (differentiering) eller uklar og tvetydig (fragmentering). Schein ser kun den første.",
+      "teoretikere": [
+        "Joanne Martin (1992)",
+        "Meyerson & Martin",
+        "Majken Schultz"
+      ],
+      "interesse": "Fra kulturel enhed til kulturel mangfoldighed. Tvetydighed.",
+      "faenomener": "Er kulturen én, flere eller tvetydig? Hvor er der afstand mellem værdier og handling, mellem værdier og symboler, mellem værdierne indbyrdes?",
+      "relaterede": [
+        "schein-kulturniveauer",
+        "kulturbegrebet",
+        "kunda-normativ-kontrol",
+        "weick-meningsskabelse"
+      ]
+    },
+    {
+      "slug": "maslow-behovshierarki",
+      "blik_detalje": "Human Relations (psykologisk blik på individet)",
+      "title": "Maslows behovshierarki",
+      "kategori": "Human Relations og motivation",
+      "blik": "Human Relations",
+      "relevans": 2,
+      "forelaesning": [
+        2
+      ],
+      "kort": "Fem behov i en pyramide: fysiske, tryghed, sociale, ego, selvrealisering. Behovene opfyldes ét niveau ad gangen.",
+      "teoretikere": [
+        "Abraham Maslow (1908-1970)"
+      ],
+      "interesse": "Menneskelig behovshierarki",
+      "faenomener": "Hvilke behov har medarbejderne i organisationen? Ses i dag i løn- og personalepolitik, jobsikkerhed, teamkultur, anerkendelse og udviklingsmuligheder.",
+      "relaterede": [
+        "herzberg-tofaktorteori",
+        "hawthorne-studierne"
+      ]
+    },
+    {
+      "slug": "mintzberg-dele-koordinering",
+      "blik_detalje": "Konfigurationsteori (idealtyper for organisering)",
+      "title": "Mintzbergs byggeklodser: fem dele, fem koordineringsmekanismer, designparametre",
+      "kategori": "Struktur og omverden",
+      "blik": "Konfigurationsteori",
+      "relevans": 5,
+      "forelaesning": [
+        3,
+        4
+      ],
+      "kort": "Organisationen består af fem dele, arbejdet koordineres på fem måder, og strukturen designes med ni håndtag under fire situationsfaktorer. Alt i femmere.",
+      "teoretikere": [
+        "Henry Mintzberg (f. 1939)"
+      ],
+      "interesse": "Structures in 5: omverden determinerer ikke organiseringsbehov",
+      "faenomener": "Opgaveløsning og arbejdsfordeling. Hvordan er de interne designparametre struktureret? Hvem koordinerer, og hvordan?",
+      "relaterede": [
+        "mintzberg-konfigurationer",
+        "contingency-teori",
+        "woodward-teknologi",
+        "lawrence-lorsch",
+        "bureaukrati-weber"
+      ]
+    },
+    {
+      "slug": "mintzberg-konfigurationer",
+      "blik_detalje": "Konfigurationsteori (idealtyper for organisering)",
+      "title": "Mintzbergs fem konfigurationer",
+      "kategori": "Struktur og omverden",
+      "blik": "Konfigurationsteori",
+      "relevans": 5,
+      "forelaesning": [
+        3,
+        4
+      ],
+      "kort": "Fem idealtyper: simpel struktur, maskinbureaukrati, professionelt bureaukrati, divisionaliseret form, adhokrati. Én del trækker, én mekanisme koordinerer.",
+      "teoretikere": [
+        "Henry Mintzberg (1980)"
+      ],
+      "interesse": "Structures in 5: omverden determinerer ikke organiseringsbehov",
+      "faenomener": "Opgaveløsning og arbejdsfordeling. Hvordan er de interne designparametre struktureret? Hvilken konfiguration ligner organisationen, og er den en hybrid?",
+      "relaterede": [
+        "mintzberg-dele-koordinering",
+        "contingency-teori",
+        "woodward-teknologi",
+        "bureaukrati-weber",
+        "kunda-normativ-kontrol",
+        "case-eksempler"
+      ]
+    },
+    {
+      "slug": "planlagte-emergerende-forandringer",
+      "blik_detalje": "Forandringsblik",
+      "title": "Planlagte vs. emergerende forandringer",
+      "kategori": "Organisatoriske forandringer",
+      "blik": "Forandringsblik",
+      "relevans": 4,
+      "forelaesning": [
+        6,
+        7
+      ],
+      "kort": "Planlagt forandring: episodisk, top-down, unfreeze-change-freeze. Emergerende forandring: kontinuerlig, bottom-up, freeze-rebalance-unfreeze.",
+      "teoretikere": [
+        "Kurt Lewin (1952)",
+        "Weick & Quinn (1999)",
+        "Finn Borum (2014)",
+        "Kanter m.fl.",
+        "Cohen et al., Hegland, Orton & Weick"
+      ],
+      "interesse": "Planlagte vs. emergerende forandringer",
+      "faenomener": "Styres forandringen top-down i faser, eller opstår den løbende i hverdagens praksis? Ses i dag i lean, BPR, strategiprojekter over for løbende tilpasning.",
+      "relaterede": [
+        "kotter-otte-trin",
+        "leavitt-model",
+        "feldman-rutiner",
+        "digital-transformation-tre-praksisser",
+        "weick-meningsskabelse",
+        "schein-kulturniveauer"
+      ]
+    },
+    {
+      "slug": "problemformulering-synopsis",
+      "blik_detalje": "Eksamensformat (metode)",
+      "title": "Problemformulering, synopsis og eksamen",
+      "kategori": "Grundlag og metode",
+      "blik": "Grundlag og metode",
+      "relevans": 4,
+      "forelaesning": [
+        1,
+        3,
+        4,
+        5,
+        7,
+        8
+      ],
+      "kort": "Start med et hv-ord, undgå ja/nej, inkludér et teoretisk begreb. Synopsis: indledning, problemformulering, teori og empiri, analyse, konklusion.",
+      "teoretikere": [
+        "Yvonne Barnholdt (undervisers vejledning)"
+      ],
+      "interesse": "At omsætte teori til et akademisk argument i en synopsis på maks 5 sider",
+      "faenomener": "Problemformuleringer, teoriafsnit, analyseafsnit, peer-feedback. Bruges direkte i eksamensugen 6.-9. november.",
+      "relaterede": [
+        "toulmin-argumentation",
+        "teori-som-blik",
+        "case-danske-bank",
+        "case-eksempler"
+      ]
+    },
+    {
+      "slug": "schein-kulturniveauer",
+      "blik_detalje": "Kulturblik (funktionalisme)",
+      "title": "Scheins tre kulturniveauer",
+      "kategori": "Organisationskultur",
+      "blik": "Kulturblik",
+      "relevans": 5,
+      "forelaesning": [
+        5,
+        6
+      ],
+      "kort": "Kultur er fælles grundlæggende antagelser, lært ved at løse problemer. Den viser sig i tre lag: artefakter, skueværdier og grundlæggende antagelser.",
+      "teoretikere": [
+        "Edgar Schein (f. 1928)"
+      ],
+      "interesse": "Kulturanalytisk model til at kortlægge værdier og grundlæggende antagelser",
+      "faenomener": "Hvilke visioner og missioner er erklæret? Hvordan kommer politikker og principper til udtryk? Hvilke værdier og overbevisninger afslører de? Ses i dag i værdisæt på hjemmesider over for det, folk faktisk gør.",
+      "relaterede": [
+        "kulturbegrebet",
+        "martin-tre-perspektiver",
+        "kunda-normativ-kontrol",
+        "weick-meningsskabelse",
+        "case-eksempler",
+        "planlagte-emergerende-forandringer"
+      ]
+    },
+    {
+      "slug": "scientific-management-taylor",
+      "blik_detalje": "Scientific Management (ingeniørblik på organisationen som en maskine)",
+      "title": "Scientific Management (Taylor)",
+      "kategori": "Klassisk organisationsteori",
+      "blik": "Scientific Management",
+      "relevans": 5,
+      "forelaesning": [
+        1
+      ],
+      "kort": "Ledelse skal bygge på systematisk viden, ikke tommelfingerregler. Fire principper, differentieret akkord og en ny arbejdsdeling skal fjerne soldiering.",
+      "teoretikere": [
+        "Frederick W. Taylor (1856-1915)"
+      ],
+      "interesse": "Kortlægning, optimering og planlægning. Incitamenter.",
+      "faenomener": "Tidsstyring, effektivitetsoptimering: hvordan planlægges opgaver mest effektivt? Hvilke incitamenter findes i lønstruktur og ansættelseskontrakter? Ses i dag i Amazon, lean, akkord, bonusmål.",
+      "relaterede": [
+        "bureaukrati-weber",
+        "hawthorne-studierne",
+        "herzberg-tofaktorteori",
+        "toulmin-argumentation",
+        "magtens-fire-ansigter",
+        "woodward-teknologi"
+      ]
+    },
+    {
+      "slug": "selvledelse-magtteknologier",
+      "blik_detalje": "Magtblik (subjektivering)",
+      "title": "Selvledelse, magtteknologier og selvteknologier",
+      "kategori": "Mening og magt",
+      "blik": "Magtblik",
+      "relevans": 3,
+      "forelaesning": [
+        8
+      ],
+      "kort": "Frihed i arbejdet har en pris: man kan aldrig slippe det. Magtteknologier disciplinerer udefra, selvteknologier får os til at disciplinere os selv. Fx MUS.",
+      "teoretikere": [
+        "Fogsgaard & Elmholdt (2015)",
+        "Anders Raastrup Kristensen (2015)",
+        "Sennett (1999)",
+        "Foucault (panoptikon, selvteknologier)"
+      ],
+      "interesse": "Magtteknologier, selvteknologier, selvledelse",
+      "faenomener": "Hvordan disciplinerer medarbejdere sig selv under frihed og fleksibilitet? Ses i dag i MUS, fleksibel arbejdstid, hjemmearbejde, 'det rene skrivebord', indbakken på nul.",
+      "relaterede": [
+        "magtens-fire-ansigter",
+        "kunda-normativ-kontrol",
+        "herzberg-tofaktorteori",
+        "scientific-management-taylor"
+      ]
+    },
+    {
+      "slug": "teori-som-blik",
+      "blik_detalje": "Fagets gennemgående analyseramme (alle blikke)",
+      "title": "Teori som blik: organisation, individ, ledelse",
+      "kategori": "Grundlag og metode",
+      "blik": "Grundlag og metode",
+      "relevans": 5,
+      "forelaesning": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "kort": "Hver teori er et blik, der gør noget synligt og andet usynligt. Spørg altid: hvad er en organisation, et menneske og ledelse ifølge teorien?",
+      "teoretikere": [
+        "Yvonne Barnholdt (undervisers ramme)",
+        "Aristoteles (theoria)"
+      ],
+      "interesse": "At kunne se, hvad en teori lader os se, og hvad den gør os blinde for",
+      "faenomener": "Alle organisatoriske fænomener. Bruges til at vælge og sammenligne teorier i en caseanalyse.",
+      "relaterede": [
+        "toulmin-argumentation",
+        "kronologi-lukkede-aabne-systemer",
+        "formel-uformel-organisation",
+        "problemformulering-synopsis"
+      ]
+    },
+    {
+      "slug": "toulmin-argumentation",
+      "blik_detalje": "Metode (gælder alle blikke)",
+      "title": "Toulmins argumentationsmodel (Frankel & Schmidt)",
+      "kategori": "Grundlag og metode",
+      "blik": "Grundlag og metode",
+      "relevans": 5,
+      "forelaesning": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "kort": "Et argument består af påstand, belæg og hjemmel. Hjemlen er næsten altid usagt, og det er dér, de fleste analyser knækker.",
+      "teoretikere": [
+        "Frankel & Schmidt (2013)",
+        "Toulmin (1958/2003)"
+      ],
+      "interesse": "At holde analyser op mod tre spørgsmål: Hvad påstår du? Hvad bygger du det på? Hvad er sammenhængen?",
+      "faenomener": "Alle organisationsanalyser. Teori bliver til hjemmel, når den bruges til at afgøre, hvad man skal kigge efter.",
+      "relaterede": [
+        "teori-som-blik",
+        "problemformulering-synopsis",
+        "case-danske-bank",
+        "scientific-management-taylor"
+      ]
+    },
+    {
+      "slug": "weick-meningsskabelse",
+      "blik_detalje": "Meningsblik (socialkonstruktivisme)",
+      "title": "Weicks meningsskabelse: de syv elementer",
+      "kategori": "Mening og magt",
+      "blik": "Meningsblik",
+      "relevans": 5,
+      "forelaesning": [
+        7,
+        8
+      ],
+      "kort": "Før folk kan handle, skal de forstå, hvad der foregår. Mening skabes socialt, bagud og ud fra ledetråde; plausibel, ikke korrekt. Lederen er meningsgiver.",
+      "teoretikere": [
+        "Karl E. Weick (f. 1936)",
+        "Hammer & Høpner (dansk formidling)"
+      ],
+      "interesse": "Meningsskabelse (7 elementer), organisering som proces",
+      "faenomener": "Hvordan skaber medlemmerne mening i flertydighed og usikkerhed? Hvad sker der, når meningen bryder sammen? Ses i dag i enhver omstrukturering, fusion, krise eller ny strategi, som 'ikke giver mening' for medarbejderne.",
+      "relaterede": [
+        "mann-gulch",
+        "schein-kulturniveauer",
+        "feldman-rutiner",
+        "digital-transformation-tre-praksisser",
+        "planlagte-emergerende-forandringer",
+        "teori-som-blik",
+        "magtens-fire-ansigter"
+      ]
+    },
+    {
+      "slug": "woodward-teknologi",
+      "blik_detalje": "Contingency-teori (situationsbestemt organisationsteori)",
+      "title": "Woodward: teknologi og struktur",
+      "kategori": "Struktur og omverden",
+      "blik": "Contingency-teori",
+      "relevans": 4,
+      "forelaesning": [
+        3
+      ],
+      "kort": "Succesfulde virksomheder tilpassede strukturen til teknologien: enheds-, masse- eller procesproduktion. De klassiske regler passer kun til masseproduktion.",
+      "teoretikere": [
+        "Joan Woodward (1958)"
+      ],
+      "interesse": "Tilpasning i forhold til kerneteknologier",
+      "faenomener": "Hvilke teknologier har stor betydning i organisationen? Antal ledelseslag, span of control, linje-stab, forholdet mellem produktionsform og struktur.",
+      "relaterede": [
+        "contingency-teori",
+        "mintzberg-konfigurationer",
+        "scientific-management-taylor",
+        "burns-stalker"
+      ]
+    }
+  ],
+  "antal_emner": 37,
+  "noter": "Datoer for lektion 2, 3, 5 og 8 er skønnet ud fra ugenumre i slides og noter. Lektion 9 er ikke afholdt."
+}
